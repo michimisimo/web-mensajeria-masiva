@@ -18,7 +18,7 @@ export class ApiListDestService {
   }
 
   getDest(): Observable<any> {
-    return this.http.get(this.apiUrl + 'getDestinatarios');
+    return this.http.get(this.apiUrl + 'getDest');
   }
 
   // Método para subir un destinatario a la API
