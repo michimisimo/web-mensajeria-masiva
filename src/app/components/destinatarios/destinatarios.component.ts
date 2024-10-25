@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ApiListDestService } from '../api/api_list_dest/api-list-dest.service';
-import { destinatario } from '../interfaces/destinatario.interface';
+import { ServiceDestinatarioService } from '../../services/service-destinatario/service-destinatario';
+import { destinatario } from '../../interfaces/destinatario.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,7 +14,7 @@ export class DestinatariosComponent {
 
   @ViewChild('fileInput') fileInput!: ElementRef;
 
-  constructor(private apiDest: ApiListDestService) { }
+  constructor(private apiDest: ServiceDestinatarioService) { }
 
   ngOnInit(): void {
     this.mostrarDest(); // Llama al método para cargar los datos al iniciar

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DifusionComponent } from './difusion.component';
+import { DifusionComponent } from './lista-difusion.component';
 
 describe('DifusionComponent', () => {
   let component: DifusionComponent;

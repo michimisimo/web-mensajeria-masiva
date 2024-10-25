@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LoginService } from '../services/login.service'; // Importar desde la carpeta 'services'
+import { LoginService } from '../../services/login.service'; // Importar desde la carpeta 'services'
 
 
 @Component({

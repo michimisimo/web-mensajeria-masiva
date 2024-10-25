@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { LoginService } from '../services/login.service';
+import { LoginService } from '../../services/login.service';
 import { Subscription } from 'rxjs';
 
 @Component({

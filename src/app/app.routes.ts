@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { DifusionComponent } from './difusion/difusion.component';
-import { DestinatariosComponent } from './destinatarios/destinatarios.component';
-import { CampanasComponent } from './campanas/campanas.component';
-import { EmailComponent } from './email/email.component';
-import { ReportesComponent } from './reportes/reportes.component';
-import { SmsComponent } from './sms/sms.component';
+import { HomeComponent } from './components/home/home.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DifusionComponent } from './components/lista-difusion/lista-difusion.component';
+import { DestinatariosComponent } from './components/destinatarios/destinatarios.component';
+import { CampanasComponent } from './components/campanas/campanas.component';
+import { EmailComponent } from './components/email/email.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { SmsComponent } from './components/sms/sms.component';
 
 
 export const routes: Routes = [

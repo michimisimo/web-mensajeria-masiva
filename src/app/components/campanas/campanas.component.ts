@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { campana } from '../interfaces/campana.interface';
+import { campana } from '../../interfaces/campana.interface';
 import { CommonModule } from '@angular/common';
-import { ApiGestCamapanaService } from '../api/api_gest_campana/api-gest-camapana.service';
+import { ServiceCamapanaService } from '../../services/service-campana/service-camapana.service';
 import { FormsModule } from '@angular/forms';
 
 
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CampanasComponent {
 
-  constructor(private apiCam: ApiGestCamapanaService) {
+  constructor(private apiCam: ServiceCamapanaService) {
     this.selectedTipoCampana = this.tiposCampana[0].id;
   }
 
