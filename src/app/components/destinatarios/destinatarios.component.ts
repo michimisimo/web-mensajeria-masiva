@@ -14,7 +14,7 @@ export class DestinatariosComponent {
 
   @ViewChild('fileInput') fileInput!: ElementRef;
 
-  constructor(private apiDest: ServiceDestinatarioService) { }
+  constructor(private serviceDest: ServiceDestinatarioService) { }
 
   ngOnInit(): void {
     this.mostrarDest(); // Llama al método para cargar los datos al iniciar
@@ -26,7 +26,7 @@ export class DestinatariosComponent {
   convertir() {
     const file = this.fileInput.nativeElement.files[0]; // Obtener el archivo del input
     if (file) {
-      this.apiDest.uploadFile(file).subscribe(
+      this.serviceDest.uploadFile(file).subscribe(
         (response: destinatario[]) => {
           console.log('respuesta api:', response);
           response.forEach((item) => {
@@ -58,7 +58,7 @@ export class DestinatariosComponent {
   }
 
   mostrarDest() {
-    this.apiDest.getDest().subscribe(
+    this.serviceDest.getDest().subscribe(
       (response: destinatario[]) => {
         this.listDest = response; // Reemplaza la lista con los datos de la API
         this.listDest.forEach(item => {
@@ -81,7 +81,7 @@ export class DestinatariosComponent {
 
     // Subir los destinatarios no duplicados
     nuevosDestinatarios.forEach((destinatario) => {
-      this.apiDest.subirDestinatario(destinatario).subscribe(
+      this.serviceDest.subirDestinatario(destinatario).subscribe(
         (response) => {
           console.log('Destinatario subido con éxito:', response);
           this.listDest = [];

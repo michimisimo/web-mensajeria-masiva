@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CampanasComponent {
 
-  constructor(private apiCam: ServiceCamapanaService) {
+  constructor(private serviceCam: ServiceCamapanaService) {
     this.selectedTipoCampana = this.tiposCampana[0].id;
   }
 
@@ -43,7 +43,7 @@ export class CampanasComponent {
   listCamProv: campana[] = [];
 
   mostrarCam() {
-    this.apiCam.getCam().subscribe(
+    this.serviceCam.getCam().subscribe(
       (response: campana[]) => {
         this.listCam = response;
         this.listCam.forEach(item => {
