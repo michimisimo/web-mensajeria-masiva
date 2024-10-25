@@ -1,0 +1,125 @@
+.page {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.drop {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 30%;
+    height: 150px;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.drop input {
+    border: 2px #f1e64e;
+    border-style: dashed;
+    background-color: black;
+    width: 100%;
+    height: 70%;
+    cursor: pointer;
+}
+
+.drop button {
+    height: 30px;
+    width: 30%;
+    cursor: pointer;
+}
+
+/* Estilos para la tabla de difusion */
+.cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.cont .nav_table {
+    margin-left: auto;
+    height: 40px;
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.nav_table button {
+    align-self: center;
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #f1e64e;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.nav_table button:hover {
+    cursor: pointer;
+    color: black;
+    background-color: #f1e64e;
+    transition: 0.3s;
+}
+
+.table-container {
+    border: 1px solid #f1e64e;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    border-bottom: 1px solid #f1e64e;
+}
+
+thead th {
+    background-color: #0c0c0c;
+    font-family: poppins-medium;
+    color: #f1e64e;
+    font-size: 15px;
+    padding: 10px;
+    text-align: left;
+}
+
+tbody td {
+    font-family: poppins-regular;
+    font-size: 13px;
+    padding: 10px;
+    border-bottom: 1px solid #f1e64e;
+}
+
+/* Fila par (even) */
+tbody tr:nth-child(even) {
+    background-color: #363636;
+    transition: 0.3s;
+}
+
+/* Fila impar (odd) */
+tbody tr:nth-child(odd) {
+    background-color: #0c0c0c;
+    transition: 0.5s;
+}
+
+tbody tr:hover {
+    background-color: #f1e64e;
+    color: black;
+    transition: 0.5s;
+}
+
+table th,
+table td {
+    text-align: left;
+}

@@ -1,0 +1,53 @@
+<div class="page">
+    <div class="drop">
+        <input type="file" id="fileInput" accept=".xls, .xlsx" #fileInput>
+        <button id="convertir" (click)="convertir()">convertir</button>
+    </div>
+
+    <div class="cont">
+        <div class="nav_table">
+            <button class="upload" (click)="subirDestinatarios()">subir</button>
+            <button class="reset" (click)="reset()">reset</button>
+            <button class="new_dif">difusion</button>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rut</th>
+                        <th>Dv rut</th>
+                        <th>Nombre</th>
+                        <th>Segundo Nombre</th>
+                        <th>Apellido</th>
+                        <th>Segundo Apellido</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let destinatario of listDestProv">
+                        <td>{{ destinatario.rut }}</td>
+                        <td>{{ destinatario.dvrut }}</td>
+                        <td>{{ destinatario.nombre }}</td>
+                        <td>{{ destinatario.snombre }}</td>
+                        <td>{{ destinatario.appaterno }}</td>
+                        <td>{{ destinatario.apmaterno }}</td>
+                        <td>
+                            <ng-container *ngIf="destinatario.email && destinatario.email.text; else plainEmail">
+                                {{ destinatario.email.text }}
+                            </ng-container>
+                            <ng-template #plainEmail>
+                                {{ destinatario.email }}
+                            </ng-template>
+                        </td>
+                        <td>{{ destinatario.telefono }}</td>
+                    </tr>
+                    <tr *ngIf="listDest.length === 0">
+                        <td colspan="8">No hay destinatarios disponibles.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

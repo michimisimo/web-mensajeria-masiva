@@ -1,0 +1,73 @@
+<div class="page">
+    <div class="cont">
+        <div class="nav_table">
+            <button class="upload" (click)="openCrear()">crear</button>
+            <button class="new_dif" (click)="modificar()">modificar</button>
+            <button class="reset">eliminar</button>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nombre</th>
+                        <th>Tipo campaña</th>
+                        <th>Fecha creación</th>
+                        <th>Fecha programada</th>
+                        <th>Hora programada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let listCamProv of listCam; let i = index">
+                        <td>
+                            <input type="checkbox" name="selectedCampaign" [checked]="isSelected(listCamProv)"
+                                (change)="toggleSelection(listCamProv)">
+                        </td>
+                        <td>{{ listCamProv.nombre }}</td>
+                        <td>{{ listCamProv.tipo_campana.nombre }}</td>
+                        <td>{{ listCamProv.fecha_creacion | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{ listCamProv.fecha_programada | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{ listCamProv.hora_programada }}</td>
+                    </tr>
+                    <tr *ngIf="listCam.length === 0">
+                        <td colspan="6">No hay campañas disponibles</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="popup" id="popup" #popup>
+        <div class="cerrar">
+            <h3 id="closeBtn" #closeBtn>X</h3>
+        </div>
+        <div class="cont" id="cont" #cont>
+            <h1>Crear Campaña</h1>
+            <form>
+                <label for="nombre">Nombre</label>
+                <input id="nombre" type="text" name="nombre">
+
+                <label for="tipoCampana">Tipo de Campaña</label>
+                <select id="tipoCampana" [(ngModel)]="selectedTipoCampana" name="tipoCampana">
+                    <option *ngFor="let tipo of tiposCampana" [value]="tipo.id">{{ tipo.nombre }}</option>
+                </select>
+            </form>
+        </div>
+        <div class="cont1" id="cont1" #cont1>
+            <h1>Modificar Campaña</h1>
+            <form>
+                <label for="nombre">Nombre</label>
+                <input id="nombre" type="text">
+                <label for="apellido">Apellido</label>
+                <input id="apellido" type="text">
+                <label for="email">Email</label>
+                <input id="email" type="text">
+                <label for="pass">Contraseña</label>
+                <input id="pass" type="password">
+                <label for="pass">Repetir contraseña</label>
+                <input id="pass" type="password">
+                <button type="submit">Crear</button>
+            </form>
+        </div>
+    </div>
+</div>

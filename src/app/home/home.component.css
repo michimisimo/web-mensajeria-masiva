@@ -1,0 +1,223 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.page .portada {
+    background-image: url(/assets/img/portada_inicio.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 700px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.portada .info {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    text-align: right;
+    margin-right: 250px;
+    width: 40%;
+    height: 70%;
+    justify-content: center;
+}
+
+.info h1 {
+    font-family: Poppins-Bold;
+    font-size: 50px;
+}
+
+.info h3 {
+    font-family: Poppins-medium;
+    font-size: 30px;
+}
+
+.info h4 {
+    font-family: Poppins-medium;
+}
+
+.info p {
+    font-family: Poppins-Regular;
+}
+
+.desc {
+    display: flex;
+    width: 80%;
+    margin: 20px;
+    align-self: center;
+}
+
+.desc .info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gal {
+    display: flex;
+    align-self: center;
+    width: 80%;
+    justify-content: space-between;
+    margin: 50px;
+}
+
+.gal .card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    background-color: #f1e64e;
+    border-radius: 15px;
+    align-items: center;
+    text-align: center;
+}
+
+.gal .card img {
+    background-size: cover;
+    width: 100%;
+    height: 300px;
+    background-position: center;
+}
+
+.gal .card .info {
+    color: black;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*estilos para el popup del login*/
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 67%;
+    min-height: fit-content;
+    width: 25%;
+    background-color: #ffffff90;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.popup h1 {
+    font-family: poppins-bold;
+    color: black;
+    align-self: center;
+}
+
+.popup .cerrar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.popup .cerrar:hover {
+    cursor: pointer;
+    background-color: #f1e64e;
+    transition: 0.3s;
+}
+
+.popup .cerrar h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #f1e64e;
+    margin: 0;
+    line-height: 30px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.popup .cerrar:hover h3 {
+    color: black;
+    transition: 0.3s;
+}
+
+.popup .cont {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    width: 80%;
+    align-items: center;
+}
+
+.popup .cont1 {
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+    flex-direction: column;
+    height: 70%;
+    width: 80%;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+form label {
+    font-family: poppins-medium;
+    color: black;
+    margin-top: 5px;
+}
+
+form input {
+    height: 25px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ffffff00;
+}
+
+form input:focus {
+    border: 2px solid #f1e64e;
+    outline: none;
+}
+
+form button {
+    align-self: center;
+    margin-top: 30px;
+    height: 40px;
+    width: 170px;
+    font-family: poppins-medium;
+    background-color: black;
+    border: none;
+    border-radius: 7px;
+}
+
+form button:hover {
+    background-color: #f1e64e;
+    color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+a {
+    margin-top: 5px;
+    font-family: poppins-regular;
+    color: black;
+}
+
+a:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('/assets/fonts/Poppins-Bold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-medium';
+    src: url('/assets/fonts/Poppins-Medium.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('/assets/fonts/Poppins-Regular.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Estructura principal con Navbar, Sidebar, Contenido y Footer */
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Navbar siempre en la parte superior */
+app-navbar {
+    flex: 0 0 auto;
+    /* Mantén el navbar fijo en la parte superior */
+}
+
+/* Main layout para Sidebar + Contenido */
+.main-layout {
+    display: flex;
+    flex: 1;
+    /* Ocupa el espacio restante entre navbar y footer */
+}
+
+/* Contenido principal */
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Footer siempre en la parte inferior */
+app-footer {
+    flex: 0 0 auto;
+    /* Mantén el footer fijo en la parte inferior */
+}

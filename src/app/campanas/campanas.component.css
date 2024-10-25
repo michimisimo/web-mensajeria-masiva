@@ -1,0 +1,217 @@
+.page {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+/* Estilos para la tabla de campañas */
+.cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.cont .nav_table {
+    margin-left: auto;
+    height: 40px;
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+}
+
+.nav_table button {
+    align-self: center;
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #f1e64e;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.nav_table button:hover {
+    cursor: pointer;
+    color: black;
+    background-color: #f1e64e;
+    transition: 0.3s;
+}
+
+.table-container {
+    border: 1px solid #f1e64e;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+thead {
+    border-bottom: 1px solid #f1e64e;
+}
+
+thead th {
+    background-color: #0c0c0c;
+    font-family: poppins-medium;
+    color: #f1e64e;
+    font-size: 15px;
+    padding: 10px;
+    text-align: left;
+}
+
+tbody td {
+    font-family: poppins-regular;
+    font-size: 13px;
+    padding: 10px;
+    border-bottom: 1px solid #f1e64e;
+}
+
+/* Fila par (even) */
+tbody tr:nth-child(even) {
+    background-color: #363636;
+    transition: 0.3s;
+}
+
+/* Fila impar (odd) */
+tbody tr:nth-child(odd) {
+    background-color: #0c0c0c;
+    transition: 0.3s;
+}
+
+/* Estilo para la fila seleccionada */
+tbody tr:hover {
+    background-color: #f1e64e;
+    color: black;
+    transition: 0.3s;
+}
+
+table th,
+table td {
+    text-align: left;
+}
+
+/*estilos para el popup*/
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 67%;
+    min-height: fit-content;
+    width: 25%;
+    background-color: #ffffff90;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.popup h1 {
+    font-family: poppins-bold;
+    color: black;
+    align-self: center;
+}
+
+.popup .cerrar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.popup .cerrar:hover {
+    cursor: pointer;
+    background-color: #f1e64e;
+    transition: 0.3s;
+}
+
+.popup .cerrar h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #f1e64e;
+    margin: 0;
+    line-height: 30px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.popup .cerrar:hover h3 {
+    color: black;
+    transition: 0.3s;
+}
+
+.popup .cont {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    width: 80%;
+    align-items: center;
+}
+
+.popup .cont1 {
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+    flex-direction: column;
+    height: 70%;
+    width: 80%;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+form label {
+    font-family: poppins-medium;
+    color: black;
+    margin-top: 5px;
+}
+
+form input {
+    height: 25px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ffffff00;
+}
+
+form input:focus {
+    border: 2px solid #f1e64e;
+    outline: none;
+}
+
+form button {
+    align-self: center;
+    margin-top: 30px;
+    height: 40px;
+    width: 170px;
+    font-family: poppins-medium;
+    background-color: black;
+    border: none;
+    border-radius: 7px;
+}
+
+form button:hover {
+    background-color: #f1e64e;
+    color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
