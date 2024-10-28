@@ -1,14 +1,18 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <div class="page">
     <div class="drop">
         <input type="file" id="fileInput" accept=".xls, .xlsx" #fileInput>
-        <button id="convertir" (click)="convertir()">convertir</button>
+        <div class="drop-buttons">
+            <button id="convertir" (click)="convertir()">Añadir a la tabla</button>
+            <button id="deshacer" (click)="reset()">Deshacer cambios</button>
+        </div>
     </div>
 
     <div class="cont">
         <div class="nav_table">
-            <button class="upload" (click)="subirDestinatarios()">Subir</button>
-            <button class="reset" (click)="reset()">Reset</button>
-            <button class="new_dif">Difusión</button>
+            <button class="upload" (click)="subirDestinatarios()">Guardar</button>
+            <button class="new_dif">Crear lista</button>
         </div>
         <div class="table-container">
             <table>
@@ -32,15 +36,19 @@
                         <td>{{ destinatario.snombre | titlecase}}</td>
                         <td>{{ destinatario.appaterno | titlecase}}</td>
                         <td>{{ destinatario.apmaterno | titlecase }}</td>
-                        <td class="email-container">
-                            <ng-container *ngIf="destinatario.email; else plainEmail">
-                                {{ destinatario.email}}
-                            </ng-container>
-                            <ng-template #plainEmail>
-                                No hay correo registrado
-                            </ng-template>
-                        </td>
+                        <td class="email-container">{{ destinatario.email}}</td>
                         <td>{{ destinatario.telefono }}</td>
+                        <td>
+                            <button>
+                                <i class="fas fa-save"></i>
+                            </button>
+                            <button>
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <button>
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
                     </tr>
                     <tr *ngIf="listDest.length === 0">
                         <td colspan="8">No hay destinatarios disponibles.</td>

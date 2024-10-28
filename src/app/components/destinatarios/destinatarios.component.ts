@@ -110,6 +110,7 @@ export class DestinatariosComponent {
   }
 
   reset() {
+    this.limpiarFileInput();
     this.listDestProv = this.listDestProv.filter(item => {
       return this.listDest.includes(item); // Mantiene solo los elementos que están en listDest
     });
