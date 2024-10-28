@@ -4,7 +4,7 @@
     <div class="top-elements">
         <div class="left-elements">
             <button class="icono-archivo">
-                <i class="fas fa-download"></i>
+                <i class="fas fa-download" (click)="descargarPlantilla()"></i>
             </button>
             <h4 class="upload-title">Descargar plantilla excel</h4>
         </div>
@@ -43,8 +43,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let destinatario of listDestProv">
-                        <td>{{ destinatario.rut }}</td>
-                        <td>{{ destinatario.dvrut | titlecase}}</td>
+                        <td>{{ destinatario.rut }}-{{ destinatario.dvrut | titlecase}}</td>
                         <td>{{ destinatario.nombre | titlecase }}</td>
                         <td>{{ destinatario.snombre | titlecase}}</td>
                         <td>{{ destinatario.appaterno | titlecase}}</td>

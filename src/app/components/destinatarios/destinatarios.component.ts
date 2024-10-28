@@ -33,14 +33,16 @@ export class DestinatariosComponent {
             console.log('item:', item)
             // Verificar que todos los campos requeridos están presentes
             if (item.rut &&
-              item.dvrut &&
               item.nombre &&
               item.snombre &&
               item.appaterno &&
               item.apmaterno &&
               item.email &&
-              item.telefono) {            
-              // Añadir a la lista
+              item.telefono) {    
+              //Separar dv 
+              item.dvrut = item.rut[item.rut.length-1];     
+              item.rut = item.rut.slice(0,-1);  
+              // Añadir a la lista              
               this.listDestProv.push(item);
             } else {
               console.error('el contenido del archivo no es admisible para el modelo de datos')
@@ -82,6 +84,7 @@ export class DestinatariosComponent {
     // Subir los destinatarios no duplicados
     nuevosDestinatarios.forEach((destinatario) => {
       //Formatear texto
+      destinatario.dvrut = destinatario.dvrut.toUpperCase();
       destinatario.nombre = destinatario.nombre.toUpperCase();
       destinatario.snombre = destinatario.snombre.toUpperCase();
       destinatario.appaterno = destinatario.appaterno.toUpperCase();
@@ -114,6 +117,16 @@ export class DestinatariosComponent {
     this.listDestProv = this.listDestProv.filter(item => {
       return this.listDest.includes(item); // Mantiene solo los elementos que están en listDest
     });
+  }
+
+  descargarPlantilla() {
+    const url = 'https://ffzsgvasphxakhjarmoj.supabase.co/storage/v1/object/public/plantilla/plantilla_destinatarios.xlsx';
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'plantilla_destinatarios.xlsx';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
 }
