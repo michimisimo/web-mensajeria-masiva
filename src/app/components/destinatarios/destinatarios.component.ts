@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ServiceDestinatarioService } from '../../services/service-destinatario/service-destinatario';
-import { destinatario } from '../../interfaces/destinatario.interface';
+import { destinatario} from '../../interfaces/destinatario.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './destinatarios.component.html',
-  styleUrls: ['./destinatarios.component.css']
+  styleUrls: ['./destinatarios.component.css'],
 })
 export class DestinatariosComponent {
 
@@ -28,7 +28,7 @@ export class DestinatariosComponent {
     if (file) {
       this.serviceDest.uploadFile(file).subscribe(
         (response: destinatario[]) => {
-          console.log('respuesta api:', response);
+          console.log('respuesta service:', response);
           response.forEach((item) => {
             console.log('item:', item)
             // Verificar que todos los campos requeridos están presentes
@@ -39,7 +39,7 @@ export class DestinatariosComponent {
               item.appaterno &&
               item.apmaterno &&
               item.email &&
-              item.telefono) {
+              item.telefono) {            
               // Añadir a la lista
               this.listDestProv.push(item);
             } else {
@@ -55,7 +55,7 @@ export class DestinatariosComponent {
     } else {
       console.error('Por favor, selecciona un archivo.');
     }
-  }
+}
 
   mostrarDest() {
     this.serviceDest.getDest().subscribe(
@@ -81,6 +81,15 @@ export class DestinatariosComponent {
 
     // Subir los destinatarios no duplicados
     nuevosDestinatarios.forEach((destinatario) => {
+      //Formatear texto
+      destinatario.nombre = destinatario.nombre.toUpperCase();
+      destinatario.snombre = destinatario.snombre.toUpperCase();
+      destinatario.appaterno = destinatario.appaterno.toUpperCase();
+      destinatario.apmaterno = destinatario.apmaterno.toUpperCase();
+      if(typeof destinatario.email == 'string'){
+        destinatario.email = destinatario.email.toUpperCase();
+      }      
+
       this.serviceDest.subirDestinatario(destinatario).subscribe(
         (response) => {
           console.log('Destinatario subido con éxito:', response);

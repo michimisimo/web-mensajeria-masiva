@@ -5,13 +5,8 @@ export interface destinatario {
     snombre: string;
     appaterno: string;
     apmaterno: string;
-    email: Email;
+    email: string; 
     telefono: string;
-}
-
-export interface Email {
-    text: string;
-    hyperlink: string;
 }
 
 // Definición de la interfaz ApiResponse

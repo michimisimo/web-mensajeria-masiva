@@ -27,17 +27,17 @@
                 <tbody>
                     <tr *ngFor="let destinatario of listDestProv">
                         <td>{{ destinatario.rut }}</td>
-                        <td>{{ destinatario.dvrut }}</td>
-                        <td>{{ destinatario.nombre }}</td>
-                        <td>{{ destinatario.snombre }}</td>
-                        <td>{{ destinatario.appaterno }}</td>
-                        <td>{{ destinatario.apmaterno }}</td>
-                        <td>
-                            <ng-container *ngIf="destinatario.email && destinatario.email.text; else plainEmail">
-                                {{ destinatario.email.text }}
+                        <td>{{ destinatario.dvrut | titlecase}}</td>
+                        <td>{{ destinatario.nombre | titlecase }}</td>
+                        <td>{{ destinatario.snombre | titlecase}}</td>
+                        <td>{{ destinatario.appaterno | titlecase}}</td>
+                        <td>{{ destinatario.apmaterno | titlecase }}</td>
+                        <td class="email-container">
+                            <ng-container *ngIf="destinatario.email; else plainEmail">
+                                {{ destinatario.email}}
                             </ng-container>
                             <ng-template #plainEmail>
-                                {{ destinatario.email }}
+                                No hay correo registrado
                             </ng-template>
                         </td>
                         <td>{{ destinatario.telefono }}</td>

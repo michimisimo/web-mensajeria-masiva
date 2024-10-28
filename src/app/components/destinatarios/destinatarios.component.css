@@ -123,3 +123,7 @@ table th,
 table td {
     text-align: left;
 }
+
+.email-container{
+    text-transform: lowercase;
+}
