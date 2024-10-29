@@ -25,41 +25,36 @@
     <div class="cont">
         <div class="nav_table">
             <button class="upload" (click)="subirDestinatarios()">Guardar</button>
-            <button class="new_dif">Crear lista</button>
+            <!-- <button class="new_dif">Crear lista</button> -->
         </div>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Rut</th>
-                        <th>Dv rut</th>
+                        <th >Rut</th>
                         <th>Nombre</th>
-                        <th>Segundo Nombre</th>
-                        <th>Apellido</th>
-                        <th>Segundo Apellido</th>
                         <th>Email</th>
                         <th>Teléfono</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let destinatario of listDestProv">
-                        <td>{{ destinatario.rut }}-{{ destinatario.dvrut | titlecase}}</td>
-                        <td>{{ destinatario.nombre | titlecase }}</td>
-                        <td>{{ destinatario.snombre | titlecase}}</td>
-                        <td>{{ destinatario.appaterno | titlecase}}</td>
-                        <td>{{ destinatario.apmaterno | titlecase }}</td>
+                        <td>{{ formatRut(destinatario.rut) }}-{{ destinatario.dvrut | titlecase}}</td>
+                        <td>
+                        {{ destinatario.nombre | titlecase }}
+                        {{ destinatario.snombre | titlecase}}
+                        {{ destinatario.appaterno | titlecase}}
+                        {{ destinatario.apmaterno | titlecase }}
+                        </td>
                         <td class="email-container">{{ destinatario.email}}</td>
                         <td>{{ destinatario.telefono }}</td>
                         <td>
-                            <button>
-                                <i class="fas fa-save"></i>
-                            </button>
-                            <button>
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                            <button>
+                            <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" >
                                 <i class="fas fa-edit"></i>
                             </button>
+                            <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" >
+                                <i class="fas fa-trash-alt"></i>
+                            </button>                            
                         </td>
                     </tr>
                     <tr *ngIf="listDest.length === 0">

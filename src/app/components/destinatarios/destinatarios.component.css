@@ -90,7 +90,6 @@
     margin-left: auto;
     height: 40px;
     display: flex;
-    width: 200px;
     justify-content: space-between;
 }
 
@@ -103,7 +102,6 @@
     background-color: black;
     transition: 0.3s;
 }
-
 .nav_table button:hover {
     cursor: pointer;
     color: black;
@@ -130,13 +128,13 @@ thead {
     border-bottom: 1px solid #f1e64e;
 }
 
-thead th {
+thead tr th {
     background-color: #0c0c0c;
     font-family: poppins-medium;
     color: #f1e64e;
     font-size: 15px;
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
 
 tbody td {
@@ -144,6 +142,10 @@ tbody td {
     font-size: 13px;
     padding: 10px;
     border-bottom: 1px solid #f1e64e;
+}
+
+tbody tr td {
+    text-align: center;
 }
 
 /* Fila par (even) */

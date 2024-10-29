@@ -41,7 +41,7 @@ export class DestinatariosComponent {
               item.telefono) {    
               //Separar dv 
               item.dvrut = item.rut[item.rut.length-1];     
-              item.rut = item.rut.slice(0,-1);  
+              item.rut = item.rut.slice(0,-1);
               // Añadir a la lista              
               this.listDestProv.push(item);
             } else {
@@ -57,6 +57,12 @@ export class DestinatariosComponent {
     } else {
       console.error('Por favor, selecciona un archivo.');
     }
+}
+
+formatRut(rut: string): string {
+  if (!rut) return '';
+  const formattedRut = rut.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  return formattedRut;
 }
 
   mostrarDest() {
