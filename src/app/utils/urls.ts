@@ -1,0 +1,1 @@
+export const url_plantilla= 'https://ffzsgvasphxakhjarmoj.supabase.co/storage/v1/object/public/plantilla/plantilla.xlsx';
