@@ -66,14 +66,7 @@
                             <td>{{ destinatario.snombre }}</td>
                             <td>{{ destinatario.appaterno }}</td>
                             <td>{{ destinatario.apmaterno }}</td>
-                            <td>
-                                <ng-container *ngIf="destinatario.email && destinatario.email.text; else plainEmail">
-                                    {{ destinatario.email.text }}
-                                </ng-container>
-                                <ng-template #plainEmail>
-                                    {{ destinatario.email }}
-                                </ng-template>
-                            </td>
+                            <td>{{ destinatario.email }}</td>
                             <td>{{ destinatario.telefono }}</td>
                         </tr>
                         <tr *ngIf="listDest.length === 0">
