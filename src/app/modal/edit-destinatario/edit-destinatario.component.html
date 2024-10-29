@@ -1,34 +1,43 @@
 <div class="modal-overlay">
-    <div class="modal-content">
+  <div class="modal-content">
+    <div class="modal-header">
       <h2>Editar Destinatario</h2>
-      <form (ngSubmit)="save()">
-        <div>
+    </div>
+    <form (ngSubmit)="save()">
+      <div class="form-row">
+        <div class="form-group">
           <label for="nombre">Nombre:</label>
           <input id="nombre" [(ngModel)]="destinatario.nombre" name="nombre" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="snombre">Segundo Nombre:</label>
           <input id="snombre" [(ngModel)]="destinatario.snombre" name="snombre" />
         </div>
-        <div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
           <label for="appaterno">Apellido Paterno:</label>
           <input id="appaterno" [(ngModel)]="destinatario.appaterno" name="appaterno" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="apmaterno">Apellido Materno:</label>
           <input id="apmaterno" [(ngModel)]="destinatario.apmaterno" name="apmaterno" />
         </div>
-        <div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
           <label for="email">Email:</label>
-          <input id="email" [(ngModel)]="destinatario.email" name="email" required type="email" />
+          <input class="input-email" id="email" [(ngModel)]="destinatario.email" name="email" required type="email" />
         </div>
-        <div>
+        <div class="form-group">
           <label for="telefono">Teléfono:</label>
           <input id="telefono" [(ngModel)]="destinatario.telefono" name="telefono" required type="tel" />
         </div>
+      </div>
+      <div class="button-row">
         <button type="submit">Guardar</button>
         <button type="button" (click)="onClose.emit()">Cancelar</button>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
-  
+</div>
