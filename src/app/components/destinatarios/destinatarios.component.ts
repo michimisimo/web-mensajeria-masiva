@@ -182,4 +182,24 @@ export class DestinatariosComponent {
     this.selectedDestinatario = null; // Reinicia el destinatario seleccionado
   }
 
+  //Guardar destinatario editado
+  eliminarDestinatario(destinatario: destinatario) {    
+    if (destinatario) {
+      const confirmacion = confirm(`Está seguro de que desea eliminar a ${destinatario.nombre} ${destinatario.appaterno}? Rut: ${destinatario.rut}-${destinatario.dvrut}`);
+      if (confirmacion) {
+        destinatario.activo = false;
+        this.darFormatoUpper(destinatario);
+        this.serviceDest.editarDestinatario(destinatario).subscribe(
+          response => {
+            console.log('Destinatario eliminado con éxito:', response);
+            this.mostrarDest(); // Actualiza la lista de destinatarios
+          },
+          error => {
+            console.error('Error al editar destinatario:', error);
+          }
+        );
+      }
+    }
+  }
+
 }

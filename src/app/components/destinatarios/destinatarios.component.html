@@ -52,7 +52,7 @@
                             <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" (click)="openEditDest(destinatario)" >
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" >
+                            <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" (click)="eliminarDestinatario(destinatario)">
                                 <i class="fas fa-trash-alt"></i>
                             </button>                            
                         </td>                            
