@@ -1,0 +1,87 @@
+<div class="page">
+    <div class="cont">
+        <div class="nav_table">
+            <button class="upload">subir</button>
+            <button class="reset">reset</button>
+            <button class="new_dif">difusion</button>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Tipo campaña</th>
+                        <th>Fecha Envio</th>
+                        <th>Nro destinatarios</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let difusion of listDif" (click)="selDataDif(difusion.id_campana)">
+                        <td>{{ difusion.nombre }}</td>
+                        <td>{{ difusion.estado_campana}}</td>
+                        <td>{{ difusion.tipo_campana }}</td>
+                        <td>{{ difusion.fecha_programada }}</td>
+                        <td>{{ difusion.nro_destinatarios }}</td>
+                    </tr>
+                    <tr *ngIf="listDif.length === 0">
+                        <td colspan="8">No hay difusiones disponibles.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="popup" id="popup" #popup>
+        <div class="cerrar">
+            <h3 id="closeBtn" #closeBtn>X</h3>
+        </div>
+        <div class="header">
+            <h3>Destinatarios campaña</h3>
+        </div>
+        <div class="cont">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Rut</th>
+                            <th>Dv rut</th>
+                            <th>Nombre</th>
+                            <th>Segundo Nombre</th>
+                            <th>Apellido</th>
+                            <th>Segundo Apellido</th>
+                            <th>Email</th>
+                            <th>Teléfono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let destinatario of listDest">
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>{{ destinatario.rut }}</td>
+                            <td>{{ destinatario.dvrut }}</td>
+                            <td>{{ destinatario.nombre }}</td>
+                            <td>{{ destinatario.snombre }}</td>
+                            <td>{{ destinatario.appaterno }}</td>
+                            <td>{{ destinatario.apmaterno }}</td>
+                            <td>
+                                <ng-container *ngIf="destinatario.email && destinatario.email.text; else plainEmail">
+                                    {{ destinatario.email.text }}
+                                </ng-container>
+                                <ng-template #plainEmail>
+                                    {{ destinatario.email }}
+                                </ng-template>
+                            </td>
+                            <td>{{ destinatario.telefono }}</td>
+                        </tr>
+                        <tr *ngIf="listDest.length === 0">
+                            <td colspan="9">No hay destinatarios disponibles.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
