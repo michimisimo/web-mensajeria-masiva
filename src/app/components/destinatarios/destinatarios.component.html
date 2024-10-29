@@ -49,7 +49,7 @@
                         <td class="email-container">{{ destinatario.email}}</td>
                         <td>{{ destinatario.telefono }}</td>
                         <td>
-                            <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" >
+                            <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" (click)="openEditDest(destinatario)" >
                                 <i class="fas fa-edit"></i>
                             </button>
                             <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" >
