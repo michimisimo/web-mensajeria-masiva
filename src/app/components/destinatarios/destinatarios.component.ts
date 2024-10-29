@@ -150,10 +150,18 @@ export class DestinatariosComponent {
   }
 
   //Editar destinatario
-  //Abrir el modal para editar
   openEditDest(destinatario: destinatario) {
+    //Abrir pop-up con mensaje para advertir que hay cambios sin guardar
+    if (this.listDestProv.length !== this.listDest.length) {
+      const confirmEdit = confirm("Guarda los cambios antes de editar.");
+      if (!confirmEdit) {
+        this.isModalOpen = false;
+      }
+    }else{
+      //Abrir modal para editar
     this.selectedDestinatario = { ...destinatario }; // Clona el destinatario
-    this.isModalOpen = true; // Abre el modal
+    this.isModalOpen = true; 
+    }    
   }
 
   //Guardar destinatario editado

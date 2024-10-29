@@ -59,18 +59,16 @@
                     </tr>
                     <tr *ngIf="listDest.length === 0">
                         <td colspan="8">No hay destinatarios disponibles.</td>
-                    </tr>
-                    <!-- Modal para editar destinatario -->
-                    <app-edit-destinatario
-                    *ngIf="isModalOpen && selectedDestinatario"
-                    [destinatario]="selectedDestinatario"
-                    (onSave)="editarDestinatario($event)"
-                    (onClose)="isModalOpen = false">
-                    </app-edit-destinatario>
-                                        
+                    </tr>                                
                 </tbody>
             </table>
         </div>
     </div>
-
 </div>
+<!-- Modal para editar destinatario -->
+<app-edit-destinatario
+*ngIf="isModalOpen && selectedDestinatario"
+[destinatario]="selectedDestinatario"
+(onSave)="editarDestinatario($event)"
+(onClose)="isModalOpen = false">
+</app-edit-destinatario>
