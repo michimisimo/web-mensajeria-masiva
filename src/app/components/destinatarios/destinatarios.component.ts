@@ -79,6 +79,9 @@ formatRut(rut: string): string {
     );
     console.log('lista_BD:', this.listDest)
   }
+  isDestinatarioAntiguo(rut: string): boolean {
+    return this.listDest.some(antiguo => antiguo.rut === rut);
+  }
 
   // Método para enviar solo los destinatarios que no están en listDest
   subirDestinatarios(): void {
