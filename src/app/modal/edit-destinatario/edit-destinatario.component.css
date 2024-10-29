@@ -1,0 +1,38 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: #0c0c0c;
+    color: #f1e64e;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 20px;
+  }
+  
+  .modal-content form div {
+    margin-bottom: 15px;
+  }
+  
+  .modal-content label {
+    display: block;
+  }
+  
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f1e64e;
+    border-radius: 5px;
+  }

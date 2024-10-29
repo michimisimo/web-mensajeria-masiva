@@ -55,11 +55,19 @@
                             <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" >
                                 <i class="fas fa-trash-alt"></i>
                             </button>                            
-                        </td>
+                        </td>                            
                     </tr>
                     <tr *ngIf="listDest.length === 0">
                         <td colspan="8">No hay destinatarios disponibles.</td>
                     </tr>
+                    <!-- Modal para editar destinatario -->
+                    <app-edit-destinatario
+                    *ngIf="isModalOpen && selectedDestinatario"
+                    [destinatario]="selectedDestinatario"
+                    (onSave)="editarDestinatario($event)"
+                    (onClose)="isModalOpen = false">
+                    </app-edit-destinatario>
+                                        
                 </tbody>
             </table>
         </div>

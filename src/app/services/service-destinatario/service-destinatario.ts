@@ -26,4 +26,7 @@ export class ServiceDestinatarioService {
     return this.http.post(this.apiUrl + 'addDest', destinatario);
   }
 
+  editarDestinatario(destinatario: destinatario) {
+    return this.http.patch(`${this.apiUrl}updateDestInfo/${destinatario.rut}`, destinatario);
+}
 }
