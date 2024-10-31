@@ -215,3 +215,27 @@ form button:hover {
     transition: 0.5s;
     cursor: pointer;
 }
+
+/* iconos */
+td button {
+    margin: 0 5px;
+    height: 30px;
+    width: 30px; 
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+td button i {
+    font-size: 16px; 
+    color: #f1e64e;
+}
+
+tbody tr:hover {
+    background-color: #f1e64e;
+    color: black; 
+}
+
+tbody tr:hover td button i {
+    color: black; 
+}

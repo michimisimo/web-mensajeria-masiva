@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <div class="page">
     <div class="cont">
         <div class="nav_table">
@@ -14,6 +16,7 @@
                         <th>Fecha creación</th>
                         <th>Fecha programada</th>
                         <th>Hora programada</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,6 +26,14 @@
                         <td>{{ listCamProv.fecha_creacion | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ listCamProv.fecha_programada | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ listCamProv.hora_programada }}</td>
+                        <td>
+                            <button>
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button>
+                                <i class="fas fa-trash-alt"></i>
+                            </button>                            
+                        </td> 
                     </tr>
                     <tr *ngIf="listCam.length === 0">
                         <td colspan="6">No hay campañas disponibles</td>
