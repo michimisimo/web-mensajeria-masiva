@@ -9,7 +9,6 @@
             <table>
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Nombre</th>
                         <th>Tipo campaña</th>
                         <th>Fecha creación</th>
@@ -19,10 +18,6 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let listCamProv of listCam; let i = index">
-                        <td>
-                            <input type="checkbox" name="selectedCampaign" [checked]="isSelected(listCamProv)"
-                                (change)="toggleSelection(listCamProv)">
-                        </td>
                         <td>{{ listCamProv.nombre }}</td>
                         <td>{{ listCamProv.tipo_campana.nombre }}</td>
                         <td>{{ listCamProv.fecha_creacion | date: 'dd-MM-yyyy' }}</td>

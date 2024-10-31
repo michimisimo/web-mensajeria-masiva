@@ -69,24 +69,5 @@ export class CampanasComponent {
     this.cont1.nativeElement.style.display = 'flex';
   }
 
-  selectedCampaign: any = null;
-
-  // Método para seleccionar o deseleccionar la campaña
-  toggleSelection(campaign: any) {
-    if (this.selectedCampaign === campaign) {
-      // Si la campaña ya está seleccionada, deseleccionarla
-      this.selectedCampaign = null;
-    } else {
-      // De lo contrario, seleccionar la campaña
-      this.selectedCampaign = campaign;
-    }
-    console.log('Campaña seleccionada:', this.selectedCampaign);
-  }
-
-  // Método para saber si una campaña está seleccionada
-  isSelected(campaign: any): boolean {
-    return this.selectedCampaign === campaign;
-  }
-
 
 }
