@@ -11,19 +11,21 @@
         <div class="right-elements">
             <h4 class="upload-title">Cargar múltiples destinatarios con archivo excel (.xlsx)</h4>
             <div class="drop">
-                
+
                 <input type="file" id="fileInput" accept=".xls, .xlsx" #fileInput>
                 <div class="drop-buttons">
                     <button id="convertir" (click)="convertir()">Añadir a la tabla</button>
                     <button id="deshacer" (click)="reset()">Deshacer cambios</button>
                 </div>
             </div>
-        </div>    
-            
+        </div>
+
     </div>
 
     <div class="cont">
         <div class="nav_table">
+            <button class="crearDifusion" [disabled]="selectedRuts.length === 0"
+                (click)="openCrear()">CrearDifusion</button>
             <button class="upload" (click)="subirDestinatarios()">Guardar</button>
             <!-- <button class="new_dif">Crear lista</button> -->
         </div>
@@ -31,44 +33,67 @@
             <table>
                 <thead>
                     <tr>
-                        <th >Rut</th>
+                        <th></th>
+                        <th>Rut</th>
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Teléfono</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let destinatario of listDestProv">
+                        <td>
+                            <input type="checkbox" [value]="destinatario.rut"
+                                [checked]="selectedRuts.includes(destinatario.rut)"
+                                (change)="onCheckboxChange($event, destinatario.rut)">
+                        </td>
                         <td>{{ formatRut(destinatario.rut) }}-{{ destinatario.dvrut | titlecase}}</td>
                         <td>
-                        {{ destinatario.nombre | titlecase }}
-                        {{ destinatario.snombre | titlecase}}
-                        {{ destinatario.appaterno | titlecase}}
-                        {{ destinatario.apmaterno | titlecase }}
+                            {{ destinatario.nombre | titlecase }}
+                            {{ destinatario.snombre | titlecase}}
+                            {{ destinatario.appaterno | titlecase}}
+                            {{ destinatario.apmaterno | titlecase }}
                         </td>
-                        <td class="email-container">{{ destinatario.email}}</td>
+                        <td class="email-container">{{ destinatario.email }}</td>
                         <td>{{ destinatario.telefono }}</td>
                         <td>
-                            <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" (click)="openEditDest(destinatario)" >
+                            <button *ngIf="isDestinatarioAntiguo(destinatario.rut)"
+                                (click)="openEditDest(destinatario)">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button *ngIf="isDestinatarioAntiguo(destinatario.rut)" (click)="eliminarDestinatario(destinatario)">
+                            <button *ngIf="isDestinatarioAntiguo(destinatario.rut)"
+                                (click)="eliminarDestinatario(destinatario)">
                                 <i class="fas fa-trash-alt"></i>
-                            </button>                            
-                        </td>                            
+                            </button>
+                        </td>
                     </tr>
                     <tr *ngIf="listDest.length === 0">
-                        <td colspan="8">No hay destinatarios disponibles.</td>
-                    </tr>                                
+                        <td colspan="6">No hay destinatarios disponibles.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 <!-- Modal para editar destinatario -->
-<app-edit-destinatario
-*ngIf="isModalOpen && selectedDestinatario"
-[destinatario]="selectedDestinatario"
-(onSave)="editarDestinatario($event)"
-(onClose)="isModalOpen = false">
+<app-edit-destinatario *ngIf="isModalOpen && selectedDestinatario" [destinatario]="selectedDestinatario"
+    (onSave)="editarDestinatario($event)" (onClose)="isModalOpen = false">
 </app-edit-destinatario>
+
+<!-- modal para elegir campaña para la difusion -->
+<div class="popup" id="popup" #popup>
+    <div class="cerrar">
+        <h3 id="closeBtn" #closeBtn>X</h3>
+    </div>
+    <div class="cont" id="cont" #cont>
+        <h2>Crear Difusion para la campaña:</h2>
+        <form>
+            <label for="selectCampana">Campaña:</label>
+            <select id="selectCampana" [(ngModel)]="selectedCampana" name="select" (change)="cambioCampana($event)">
+                <option *ngFor="let campana of listCam" [ngValue]="campana.id_campana">{{ campana.nombre }}</option>
+            </select>
+            <button (click)="crearDifusion()">Crear Difusion</button>
+        </form>
+    </div>
+</div>

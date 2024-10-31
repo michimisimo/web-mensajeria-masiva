@@ -6,3 +6,8 @@ export interface difusion {
     fecha_programada: string,
     nro_destinatarios: number
 }
+
+export interface detalleDifusion {
+    rut: string;
+    id_campana: number;
+}
