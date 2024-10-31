@@ -3,20 +3,19 @@ import { campana } from '../../interfaces/campana.interface';
 import { CommonModule } from '@angular/common';
 import { ServiceCamapanaService } from '../../services/service-campana/service-camapana.service';
 import { FormsModule } from '@angular/forms';
+import { EditCampanaComponent } from '../../modal/edit-campana/edit-campana.component';
 
 
 @Component({
   selector: 'app-campanas',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, EditCampanaComponent],
   templateUrl: './campanas.component.html',
   styleUrl: './campanas.component.css'
 })
 export class CampanasComponent {
 
-  constructor(private serviceCam: ServiceCamapanaService) {
-    this.selectedTipoCampana = this.tiposCampana[0].id;
-  }
+  constructor(private serviceCam: ServiceCamapanaService) {}
 
   @ViewChild('popup') popup!: ElementRef;
   @ViewChild('cont') cont!: ElementRef;
@@ -26,47 +25,110 @@ export class CampanasComponent {
   ngOnInit(): void {
     this.mostrarCam(); // Llamar al método para cargar los datos al iniciar
   }
+  mostrarCampana: campana = {
+    id_campana: 0,
+    nombre: '',
+    fecha_creacion: new Date(),
+    fecha_programada: new Date(),
+    hora_programada: new Date(),
+    id_tipo_campana: 0,
+    nombre_tipo_campana: '',
+    id_estado: 0
+  };
 
-  ngAfterViewInit(): void {
-    this.closeBtn.nativeElement.addEventListener('click', () => {
-      this.popup.nativeElement.style.display = 'none';
-    });
-  }
-
-  selectedTipoCampana: number;
-
-  tiposCampana = [
-    { id: 1, nombre: 'SMS' },
-    { id: 2, nombre: 'email' },
-  ];
   listCam: campana[] = [];
   listCamProv: campana[] = [];
+
+  //Modal editar campaña
+  isModalOpen = false;
+  selectedCampana: campana = {
+    id_campana: 0,
+    nombre: '',
+    fecha_creacion: new Date(),
+    fecha_programada: new Date(),
+    hora_programada: new Date(),
+    id_tipo_campana: 0,
+    nombre_tipo_campana: '',
+    id_estado: 0
+  };
+
+  formattedCampana : campana = {
+    id_campana: 0,
+    nombre: '',
+    fecha_creacion: new Date(),
+    fecha_programada: new Date(),
+    hora_programada: new Date(),
+    id_tipo_campana: 0,
+    id_estado: 0
+  };
 
   mostrarCam() {
     this.serviceCam.getCam().subscribe(
       (response: campana[]) => {
-        this.listCam = response;
-        this.listCam.forEach(item => {
-          this.listCamProv.push(item);
-        });
+        response.forEach((campana) => {
+          this.mostrarCampana = campana
+          this.mostrarCampana.nombre_tipo_campana = this.getTipoCampanaNombre(this.mostrarCampana.id_tipo_campana);
+          this.listCam.push(this.mostrarCampana);
+        });   
       },
-      error => {
+       error => {
         console.error('Error:', error)
       }
     )
     console.log('lista BD:', this.listCam)
   }
 
-  openCrear() {
-    this.popup.nativeElement.style.display = 'flex';
-    this.cont1.nativeElement.style.display = 'none';
-    this.cont.nativeElement.style.display = 'flex';
+  getTipoCampanaNombre(id: number) {
+    let nombreTipoCampana = '';
+    if (id === 1) {
+      nombreTipoCampana = 'SMS';
+    } else if (id === 2) {
+      nombreTipoCampana = 'Email';
+    } else{
+      console.log("No se pudo obtener el nombre del tipo de campaña")
+      return "-";
+    }
+    return nombreTipoCampana;
   }
 
-  modificar() {
-    this.popup.nativeElement.style.display = 'flex';
-    this.cont.nativeElement.style.display = 'none';
-    this.cont1.nativeElement.style.display = 'flex';
+  formatCampana(campana: campana){
+    this.formattedCampana.id_campana= campana.id_campana;
+    this.formattedCampana.nombre = campana.nombre;
+    this.formattedCampana.fecha_creacion = campana.fecha_creacion;
+    this.formattedCampana.fecha_programada = campana. fecha_programada;
+    this.formattedCampana.hora_programada = campana.hora_programada;
+    this.formattedCampana.id_tipo_campana = campana.id_tipo_campana;
+    this.formattedCampana.id_estado = campana.id_estado;
+    return this.formattedCampana;
+  }
+  
+
+  //Modal editar campaña
+  openEditModal(campana: campana) {
+    this.selectedCampana = { ...campana }; //clona la campaña
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  editarCampana(campana: campana | null) {    
+    if (campana){
+      console.log("Campana editada antes de formatear y guardar en bd: " + JSON.stringify(campana));
+      campana = this.formatCampana(campana);
+      console.log("Campana formateada antes de guardar en bd: " + JSON.stringify(campana));
+      this.serviceCam.editarCampana(campana).subscribe(
+        response => {
+          console.log('Campaña editada con éxito:', response);
+          this.mostrarCam(); // Actualiza la lista de campañas
+        },
+        error => {
+          console.error('Error al editar campaña:', error);
+        }
+      );
+    this.isModalOpen = false;
+    }    
   }
 
 

@@ -3,9 +3,7 @@
 <div class="page">
     <div class="cont">
         <div class="nav_table">
-            <button class="upload" (click)="openCrear()">Crear</button>
-            <button class="new_dif" (click)="modificar()">Modificar</button>
-            <button class="reset">Eliminar</button>
+            <button class="upload">Crear</button>
         </div>
         <div class="table-container">
             <table>
@@ -20,14 +18,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let listCamProv of listCam; let i = index">
-                        <td>{{ listCamProv.nombre }}</td>
-                        <td>{{ listCamProv.tipo_campana.nombre }}</td>
-                        <td>{{ listCamProv.fecha_creacion | date: 'dd-MM-yyyy' }}</td>
-                        <td>{{ listCamProv.fecha_programada | date: 'dd-MM-yyyy' }}</td>
-                        <td>{{ listCamProv.hora_programada }}</td>
+                    <tr *ngFor="let campana of listCam; let i = index">
+                        <td>{{ campana.nombre }}</td>
+                        <td>{{ campana.nombre_tipo_campana }}</td>
+                        <td>{{ campana.fecha_creacion | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{ campana.fecha_programada | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{ campana.hora_programada }}</td>
                         <td>
-                            <button>
+                            <button (click)="openEditModal(campana)">
                                 <i class="fas fa-edit"></i>
                             </button>
                             <button>
@@ -43,37 +41,12 @@
         </div>
     </div>
 
-    <div class="popup" id="popup" #popup>
-        <div class="cerrar">
-            <h3 id="closeBtn" #closeBtn>X</h3>
-        </div>
-        <div class="cont" id="cont" #cont>
-            <h1>Crear Campaña</h1>
-            <form>
-                <label for="nombre">Nombre</label>
-                <input id="nombre" type="text" name="nombre">
-
-                <label for="tipoCampana">Tipo de Campaña</label>
-                <select id="tipoCampana" [(ngModel)]="selectedTipoCampana" name="tipoCampana">
-                    <option *ngFor="let tipo of tiposCampana" [value]="tipo.id">{{ tipo.nombre }}</option>
-                </select>
-            </form>
-        </div>
-        <div class="cont1" id="cont1" #cont1>
-            <h1>Modificar Campaña</h1>
-            <form>
-                <label for="nombre">Nombre</label>
-                <input id="nombre" type="text">
-                <label for="apellido">Apellido</label>
-                <input id="apellido" type="text">
-                <label for="email">Email</label>
-                <input id="email" type="text">
-                <label for="pass">Contraseña</label>
-                <input id="pass" type="password">
-                <label for="pass">Repetir contraseña</label>
-                <input id="pass" type="password">
-                <button type="submit">Crear</button>
-            </form>
-        </div>
-    </div>
 </div>
+
+<!-- Modal para editar campaña -->
+<app-edit-campana 
+  *ngIf="isModalOpen" 
+  [campana]="selectedCampana" 
+  (onSave)="editarCampana($event)" 
+  (onClose)="closeModal()">
+</app-edit-campana>

@@ -1,11 +1,10 @@
 export interface campana {
-    id: number;
+    id_campana?: number;
     nombre: string;
     fecha_creacion: Date;
     fecha_programada: Date;
     hora_programada: Date;
     id_tipo_campana: number;
-    tipo_campana: {
-        nombre: string;
-    };
+    nombre_tipo_campana?: string | null;
+    id_estado: number;
 }
