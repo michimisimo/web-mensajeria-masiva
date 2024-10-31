@@ -18,8 +18,8 @@ export class ServiceDifusionService {
     return this.http.get(this.apiUrl + 'getDetDif/' + idCampana)
   }
 
-  subirDifusion(idCampana: number, ruts: []): Observable<any> {
-    return this.http.post(this.apiUrl + 'crearDif/' + idCampana, ruts)
+  subirDifusion(idCampana: number, ruts: { ruts: string[] }): Observable<any> {
+    return this.http.post(this.apiUrl + 'createDif/' + idCampana, ruts)
   }
 
   borrarDif(idCampana: number, rut: string): Observable<any> {

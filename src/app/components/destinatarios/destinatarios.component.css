@@ -7,40 +7,40 @@
 }
 
 .top-elements {
-    display: flex; 
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     align-items: center;
     text-align: center;
-    
+
 }
 
-.right-elements{
+.right-elements {
     width: 70%;
     margin-bottom: 50px;
     margin-left: 10%;
     margin-right: 15%;
 }
 
-.left-elements{
+.left-elements {
     width: 30%;
     margin-bottom: 50px;
     margin-left: 15%;
     margin-right: 10%;
 }
 
-.icono-archivo{
-    font-size: 100px; 
+.icono-archivo {
+    font-size: 100px;
     color: #f1e64e;
     background-color: transparent;
     border: transparent;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .upload-title {
     color: #f1e64e;
     margin-bottom: 10px;
-    text-align: center; 
+    text-align: center;
     font-family: poppins-medium;
 }
 
@@ -54,7 +54,7 @@
     height: 150px;
     text-align: center;
     justify-content: space-between;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 
 .drop input {
@@ -65,17 +65,18 @@
     height: 70%;
     cursor: pointer;
 }
+
 .drop-buttons {
-    display: flex;  
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between;
     width: 100%;
 }
 
 .drop button {
     height: 40px;
-    width: 48%; 
+    width: 48%;
     cursor: pointer;
-    margin: 5%; 
+    margin: 5%;
 }
 
 .cont {
@@ -86,6 +87,7 @@
 }
 
 .cont .nav_table {
+    width: 220px;
     margin-left: auto;
     height: 40px;
     display: flex;
@@ -101,21 +103,12 @@
 
 .nav_buttons button {
     align-self: center;
+    width: 105px;
     height: 30px;
     border-radius: 5px;
     border: 1px solid #f1e64e;
     background-color: black;
     transition: 0.3s;
-    margin: 0 10px;
-}
-
-.nav_buttons button.upload {
-    width: 90px;
-}
-
-.new_buttons button.new-dest{
-    width: 180px;
-    color: #f1e64e;
 }
 
 .nav_table button:hover {
@@ -187,29 +180,131 @@ table td {
     text-align: left;
 }
 
-.email-container{
+.email-container {
     text-transform: lowercase;
 }
 
 td button {
     margin: 0 5px;
     height: 30px;
-    width: 30px; 
+    width: 30px;
     border: none;
     background: none;
     cursor: pointer;
 }
 
 td button i {
-    font-size: 16px; 
+    font-size: 16px;
     color: #f1e64e;
 }
 
 tbody tr:hover {
     background-color: #f1e64e;
-    color: black; 
+    color: black;
 }
 
 tbody tr:hover td button i {
-    color: black; 
+    color: black;
+}
+
+/*estilos para el popup*/
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 35%;
+    min-height: fit-content;
+    width: 25%;
+    background-color: #ffffff90;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup h2 {
+    font-family: poppins-bold;
+    color: black;
+    align-self: center;
+    text-align: center;
+}
+
+.popup .cerrar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.popup .cerrar:hover {
+    cursor: pointer;
+    background-color: #f1e64e;
+    transition: 0.3s;
+}
+
+.popup .cerrar h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #f1e64e;
+    margin: 0;
+    line-height: 30px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.popup .cerrar:hover h3 {
+    color: black;
+    transition: 0.3s;
+}
+
+.popup .cont {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    width: 80%;
+}
+
+.cont form {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+form label {
+    color: #0c0c0c;
+    font-family: poppins-regular;
+}
+
+form select {
+    height: 30px;
+    background-color: #0c0c0c;
+}
+
+form button {
+    align-self: center;
+    margin-top: 30px;
+    height: 40px;
+    width: 170px;
+    font-family: poppins-medium;
+    background-color: black;
+    border: none;
+    border-radius: 7px;
+}
+
+form button:hover {
+    background-color: #f1e64e;
+    color: black;
+    transition: 0.5s;
+    cursor: pointer;
 }
