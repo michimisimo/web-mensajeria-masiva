@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('cont1') cont1!: ElementRef;
 
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router : Router) {
     // Suscribirse al servicio de login para abrir el popup
     this.loginClickSubscription = this.loginService.loginClick$.subscribe(() => {
       this.openPopup();
@@ -71,4 +72,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       this.loginClickSubscription.unsubscribe();
     }
   }
+
+  goToDashboard(){
+    this.router.navigate(['/dashboard']);
+  }
+
 }
