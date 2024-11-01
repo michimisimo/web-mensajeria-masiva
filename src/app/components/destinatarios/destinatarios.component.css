@@ -95,13 +95,16 @@
     width: 100%;
 }
 
-.nav_buttons {
+.cont .nav_table {
+    width: 220px;
+    margin-left: auto;
+    height: 40px;
     display: flex;
     justify-content: space-between;
-    width: 100%;
 }
 
-.nav_buttons button {
+
+.nav_table button {
     align-self: center;
     width: 105px;
     height: 30px;
