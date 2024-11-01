@@ -263,27 +263,27 @@ export class DestinatariosComponent {
             const rutsData = { ruts: filtrados };
             this.serviceDif.subirDifusion(this.selectedCampana, rutsData).subscribe(
               response => {
-                console.log('Difusión creada con éxito:', response);
+                console.log('Lista de difusión creada con éxito:', response);
                 this.selectedCampana = 0;
                 this.selectedRuts = []; // Vaciar el array de RUTs seleccionados
                 this.popup.nativeElement.style.display = 'none';
               },
               error => {
-                console.error('Error al crear la difusión:', error);
+                console.error('Error al crear la lista de difusión:', error);
               }
             );
           } catch (error) {
-            console.log('Error al crear difusión:', error);
+            console.log('Error al crear la lista de difusión:', error);
           }
         } else {
-          console.log('No hay RUTs filtrados para crear la difusión.');
+          console.log('No hay RUTs filtrados para crear la lista de difusión.');
           this.selectedCampana = 0;
           this.selectedRuts = []; // Vaciar el array de RUTs seleccionados
           this.popup.nativeElement.style.display = 'none';
         }
       });
     } else {
-      console.log('Falta información para crear difusión');
+      console.log('Falta información para crear lista de difusión');
     }
   }
 
