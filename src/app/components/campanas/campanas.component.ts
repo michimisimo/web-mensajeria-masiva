@@ -40,8 +40,6 @@ export class CampanasComponent {
     id_estado: 0
   };
 
-  nombreTipoCampana: string = '';
-
   newCampana: campana = {
     nombre: '',
     fecha_creacion: new Date(),
@@ -92,7 +90,6 @@ export class CampanasComponent {
         response.forEach((campana) => {
           if(campana.id_estado != 4){
             this.mostrarCampana = campana
-          this.nombreTipoCampana = this.getTipoCampanaNombre(this.mostrarCampana.id_tipo_campana);
           this.listCam.push(this.mostrarCampana);
           }          
         });   
@@ -102,19 +99,6 @@ export class CampanasComponent {
       }
     )
     console.log('lista BD:', this.listCam)
-  }
-
-  getTipoCampanaNombre(id: number) {
-    let nombreTipoCampana = '';
-    if (id === 1) {
-      nombreTipoCampana = 'SMS';
-    } else if (id === 2) {
-      nombreTipoCampana = 'EMAIL';
-    } else{
-      console.log("No se pudo obtener el nombre del tipo de campaña")
-      return "-";
-    }
-    return nombreTipoCampana;
   }
 
   formatCampana(campana: campana){
