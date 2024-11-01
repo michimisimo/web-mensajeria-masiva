@@ -96,7 +96,7 @@
 }
 
 .cont .nav_table {
-    width: 220px;
+    width:270px;
     margin-left: auto;
     height: 40px;
     display: flex;
@@ -106,12 +106,13 @@
 
 .nav_table button {
     align-self: center;
-    width: 105px;
+    width: 130px;
     height: 30px;
     border-radius: 5px;
     border: 1px solid #f1e64e;
     background-color: black;
     transition: 0.3s;
+    margin-left: auto;
 }
 
 .nav_table button:hover {

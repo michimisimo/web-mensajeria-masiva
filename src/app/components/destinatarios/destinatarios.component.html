@@ -24,10 +24,9 @@
 
     <div class="cont">
         <div class="nav_table">
-            <button class="crearDifusion" [disabled]="selectedRuts.length === 0"
-                (click)="openCrear()">CrearDifusion</button>
-            <button class="upload" (click)="subirDestinatarios()">Guardar</button>
-            <!-- <button class="new_dif">Crear lista</button> -->
+            <button *ngIf="selectedRuts.length > 0"
+                (click)="openCrear()">Agregar a lista</button>
+            <button class="upload" (click)="subirDestinatarios()">Guardar Cambios</button>            
         </div>
         <div class="table-container">
             <table>
@@ -90,13 +89,13 @@
         <h3 id="closeBtn" #closeBtn>X</h3>
     </div>
     <div class="cont" id="cont" #cont>
-        <h2>Crear Difusion para la campaña:</h2>
+        <h2>Selecciona la campaña:</h2>
         <form>
             <label for="selectCampana">Campaña:</label>
             <select id="selectCampana" [(ngModel)]="selectedCampana" name="select" (change)="cambioCampana($event)">
-                <option *ngFor="let campana of listCam" [ngValue]="campana.id_campana">{{ campana.nombre }}</option>
+                <option *ngFor="let campana of listCam" [ngValue]="campana.id_campana">{{ campana.nombre | titlecase }}</option>
             </select>
-            <button (click)="crearDifusion()">Crear Difusion</button>
+            <button (click)="crearDifusion()">Agregar a lista</button>
         </form>
     </div>
 </div>

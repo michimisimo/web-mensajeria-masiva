@@ -17,9 +17,9 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let difusion of listDif" (click)="selDataDif(difusion.id_campana)">
-                        <td>{{ difusion.nombre }}</td>
-                        <td>{{ difusion.estado_campana}}</td>
-                        <td>{{ difusion.tipo_campana }}</td>
+                        <td>{{ difusion.nombre | titlecase }}</td>
+                        <td>{{ difusion.estado_campana | titlecase}}</td>
+                        <td>{{ difusion.tipo_campana === "email" ? (difusion.tipo_campana | titlecase) : (difusion.tipo_campana | uppercase) }}</td>
                         <td>{{ difusion.fecha_programada }}</td>
                         <td>{{ difusion.nro_destinatarios }}</td>
                     </tr>
