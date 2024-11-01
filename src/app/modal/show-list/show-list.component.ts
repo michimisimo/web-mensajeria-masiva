@@ -40,19 +40,22 @@ export class ShowListComponent {
     return formattedRut;
   }
 
-  eliminarDestinatario(rut: string) {
+  eliminarDestinatario(destinatario: destinatario) {
     console.log('campaña:', this.campanaSelected);
-    console.log('rut:', rut);
-
-    this.serviceDif.borrarDif(this.campanaSelected, rut).subscribe({
-      next: (response) => {
-        console.log('destinatario eliminado de la difusión con éxito', response);
-        this.mostrarDetDif(this.campanaSelected); // Actualiza la lista de destinatarios
-      },
-      error: (error) => {
-        console.log('error al eliminar destinatario de la difusión', error);
-      }
-    });
+    console.log('rut:', destinatario.rut);
+    const confirmacion = confirm(`¿Está seguro de que desea eliminar 
+      "${destinatario.nombre} ${destinatario.snombre} ${destinatario.appaterno} ${destinatario.apmaterno} - RUT: ${this.formatRut(destinatario.rut)}-${destinatario.dvrut} "?`);
+    if (confirmacion){
+      this.serviceDif.borrarDif(this.campanaSelected, destinatario.rut).subscribe({
+        next: (response) => {
+          console.log('destinatario eliminado de la difusión con éxito', response);
+          this.mostrarDetDif(this.campanaSelected); // Actualiza la lista de destinatarios
+        },
+        error: (error) => {
+          console.log('error al eliminar destinatario de la difusión', error);
+        }
+      });
+    }    
   }
 
   mostrarDetDif(idCampana: number) {
