@@ -28,6 +28,7 @@ export class EditCampanaComponent {
   }
 
   save() {
+    this.campana.nombre = this.tempNombre;
     this.onSave.emit(this.campana); // Emite los nuevos datos
   }
   
