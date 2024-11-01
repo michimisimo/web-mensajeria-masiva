@@ -20,6 +20,12 @@ export class ServiceCamapanaService {
     return this.http.patch(`${this.apiUrl}updateCampana/${campana.id_campana}`, campana);
   }
 
+  crearCampana(campana: campana): Observable<any> {
+    return this.http.post(`${this.apiUrl}createCampana`, campana);
+  }
+
+  
+
 }
 
 

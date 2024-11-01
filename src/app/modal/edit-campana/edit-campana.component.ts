@@ -17,17 +17,7 @@ export class EditCampanaComponent {
   @Output() onClose = new EventEmitter<void>();
 
   save() {
-    this.updateTipoCampanaNombre();
     this.onSave.emit(this.campana); // Emite los nuevos datos
   }
-
-  private updateTipoCampanaNombre() {
-    if (this.campana.id_tipo_campana === 1) {
-      this.campana.nombre_tipo_campana = 'SMS';
-    } else if (this.campana.id_tipo_campana === 2) {
-      this.campana.nombre_tipo_campana = 'Email';
-    }
-  }
-
   
 }

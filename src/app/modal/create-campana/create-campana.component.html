@@ -1,7 +1,7 @@
 <div class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Editar Campaña</h2>
+        <h2>Crear Campaña</h2>
       </div>
       <form (ngSubmit)="save()">
         <div class="form-row">
@@ -11,9 +11,9 @@
           </div>
           <div class="form-group">
             <label for="tipo">Tipo de Campaña:</label>
-            <select id="tipo" [(ngModel)]="campana.id_tipo_campana" name="tipo" required>
-              <option [value]="1">SMS</option>
-              <option [value]="2">Email</option>
+            <select id="tipo" [(ngModel)]="campana.id_tipo_campana" name="tipo" type="number" required>
+              <option [ngValue]="1">SMS</option>
+              <option [ngValue]="2">Email</option>
             </select>
           </div>
         </div>
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="button-row">
-          <button type="submit">Guardar</button>
+          <button type="submit" >Crear</button>
           <button type="button" (click)="onClose.emit()">Cancelar</button>
         </div>
       </form>

@@ -4,7 +4,7 @@
     <div class="cont">
         <h4>Mis campañas</h4>
         <div class="nav_table">
-            <button class="upload">+ Nueva Campaña</button>
+            <button class="upload" (click)="openCreateModal()">+ Nueva Campaña</button>
         </div>
         <div class="table-container">
             <table>
@@ -21,7 +21,7 @@
                 <tbody>
                     <tr *ngFor="let campana of listCam; let i = index">
                         <td>{{ campana.nombre | titlecase}}</td>
-                        <td>{{ campana.nombre_tipo_campana === 'EMAIL' ? (campana.nombre_tipo_campana | titlecase) : campana.nombre_tipo_campana }}</td>
+                        <td>{{ nombreTipoCampana === 'EMAIL' ? (nombreTipoCampana | titlecase) : nombreTipoCampana }}</td>
                         <td>{{ campana.fecha_creacion | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ campana.fecha_programada | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ campana.hora_programada}}</td>
@@ -44,10 +44,18 @@
 
 </div>
 
+<!-- Modal para crear campaña -->
+<app-create-campana 
+  *ngIf="isCreateModalOpen" 
+  [campana]="newCampana" 
+  (onCreate)="createCampana($event)" 
+  (onClose)="closeCreateModal()">
+</app-create-campana>
+
 <!-- Modal para editar campaña -->
 <app-edit-campana 
-  *ngIf="isModalOpen" 
+  *ngIf="isEditModalOpen" 
   [campana]="selectedCampana" 
   (onSave)="editarCampana($event)" 
-  (onClose)="closeModal()">
+  (onClose)="closeEditModal()">
 </app-edit-campana>
