@@ -96,7 +96,7 @@
 }
 
 .cont .nav_table {
-    width:270px;
+    width:290px;
     margin-left: auto;
     height: 40px;
     display: flex;
@@ -106,7 +106,7 @@
 
 .nav_table button {
     align-self: center;
-    width: 130px;
+    width: 140px;
     height: 30px;
     border-radius: 5px;
     border: 1px solid #f1e64e;
