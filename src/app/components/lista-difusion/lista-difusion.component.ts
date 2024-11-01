@@ -23,12 +23,18 @@ export class DifusionComponent {
 
   listDif: difusion[] = [];
   listDest: destinatario[] = [];
-  campanaId: number = 0;
+  campanaSelected: number = 0;
 
   ngAfterViewInit(): void {
     this.closeBtn.nativeElement.addEventListener('click', () => {
       this.popup.nativeElement.style.display = 'none';
     });
+  }
+
+  formatRut(rut: string): string {
+    if (!rut) return '';
+    const formattedRut = rut.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return formattedRut;
   }
 
   mostrarDif() {
@@ -43,6 +49,7 @@ export class DifusionComponent {
   };
 
   async selDataDif(idCampana: number) {
+    this.campanaSelected = idCampana;
     console.log(idCampana)
     await this.mostrarDetDif(idCampana);
     this.openPopUp();
@@ -58,28 +65,38 @@ export class DifusionComponent {
 
   mostrarDetDif(idCampana: number) {
     this.serviceDif.getDetalleDifusion(idCampana).subscribe({
-      next: (Response) => {
-        this.listDest = Response || []
-        console.log('listDest', Response)
-      }, error(error) {
-        console.log('error al obtener detalle difusion', error)
+      next: (response) => {
+        this.listDest = response || [];
+        console.log('listDest', this.listDest);
+
+        // Verifica la longitud después de actualizar
+        if (this.listDest.length === 0) {
+          this.campanaSelected = 0; // Reinicia la selección si no hay destinatarios
+          this.closePopUp(); // Cierra el popup
+          this.mostrarDif(); // Muestra la lista de difusiones
+        }
+      },
+      error: (error) => {
+        console.log('error al obtener detalle de difusión', error);
       }
-    })
+    });
   }
 
-  /*   selectedDestinatarios: { rut: string; campanaId: number }[] = [];
-  
-    onSelect(rut: string, event: Event) {
-      const isChecked = (event.target as HTMLInputElement).checked;
-      if (isChecked) {
-        // Agregar a la lista de seleccionados
-        this.selectedDestinatarios.push({ rut, this.camapanaId });
-      } else {
-        // Eliminar de la lista de seleccionados
-        this.selectedDestinatarios = this.selectedDestinatarios.filter(d => d.rut !== rut);
-      }
-      console.log('Destinatarios seleccionados:', this.selectedDestinatarios);
-    } */
+  eliminarDestinatario(rut: string) {
+    console.log('campaña:', this.campanaSelected);
+    console.log('rut:', rut);
 
+    this.serviceDif.borrarDif(this.campanaSelected, rut).subscribe({
+      next: (response) => {
+        console.log('destinatario eliminado de la difusión con éxito', response);
+
+        // Esperar a que se actualice la lista de destinatarios
+        this.mostrarDetDif(this.campanaSelected);
+      },
+      error: (error) => {
+        console.log('error al eliminar destinatario de la difusión', error);
+      }
+    });
+  }
 
 }

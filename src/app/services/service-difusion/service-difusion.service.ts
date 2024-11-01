@@ -23,6 +23,7 @@ export class ServiceDifusionService {
   }
 
   borrarDif(idCampana: number, rut: string): Observable<any> {
-    return this.http.put(this.apiUrl + 'delDif/' + idCampana, rut)
+    console.log('rut en service:', rut)
+    return this.http.put(this.apiUrl + 'delDif/' + idCampana, { rut })
   }
 }
