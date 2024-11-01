@@ -245,6 +245,12 @@ export class DestinatariosComponent {
     }
   }
 
+  //Método para seleccionar todos los checkbox de la tabla
+  toggleSelectAll(event: any) {
+    const checked = event.target.checked;
+    this.selectedRuts = checked ? this.listDestProv.map(destinatario => destinatario.rut) : [];
+  }
+
   cambioCampana(event: any) {
     console.log('idCam seleccionado:', this.selectedCampana);
   }

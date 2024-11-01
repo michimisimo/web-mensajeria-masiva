@@ -33,6 +33,9 @@
             <table>
                 <thead>
                     <tr>
+                        <th>
+                            <input type="checkbox" (change)="toggleSelectAll($event)" [checked]="selectedRuts.length === listDestProv.length">
+                        </th>
                         <th></th>
                         <th>Rut</th>
                         <th>Nombre</th>
