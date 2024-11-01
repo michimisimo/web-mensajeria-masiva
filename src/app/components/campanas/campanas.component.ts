@@ -115,9 +115,7 @@ export class CampanasComponent {
 
   editarCampana(campana: campana | null) {    
     if (campana){
-      console.log("Campana editada antes de formatear y guardar en bd: " + JSON.stringify(campana));
       campana = this.formatCampana(campana);
-      console.log("Campana formateada antes de guardar en bd: " + JSON.stringify(campana));
       this.serviceCam.editarCampana(campana).subscribe(
         response => {
           console.log('Campaña editada con éxito:', response);
@@ -128,6 +126,28 @@ export class CampanasComponent {
         }
       );
     this.isModalOpen = false;
+    }    
+  }
+
+  
+
+  eliminarCampana(campana: campana) {
+    if (campana) {
+      campana = this.formatCampana(campana);
+      const confirmacion = confirm(`¿Está seguro de que desea eliminar la campaña "${campana.nombre}"?`);
+      if (confirmacion) {
+        campana.id_estado = 4;
+        campana.nombre = campana.nombre.toUpperCase(); //Guardar nombre de campaña en mayúsculas
+        this.serviceCam.editarCampana(campana).subscribe(
+          response => {
+            console.log('Campaña eliminada con éxito:', response);
+            this.mostrarCam(); // Actualiza la lista de campañas
+          },
+          error => {
+            console.error('Error al editar campaña:', error);
+          }
+        );
+      }
     }    
   }
 
