@@ -16,15 +16,7 @@ export class CreateCampanaComponent {
   @Output() onCreate = new EventEmitter<campana>();
   @Output() onClose = new EventEmitter<void>();
 
-  get capitalizedNombre(): string {
-    return this.campana.nombre
-      .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-  }
-
   save() {    
-    console.log("Campaña antes de enviarla en save(): "+JSON.stringify(this.campana));
     this.onCreate.emit(this.campana); // Emite los datos de la nueva campaña
   }
 

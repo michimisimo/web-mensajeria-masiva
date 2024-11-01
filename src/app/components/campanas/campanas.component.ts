@@ -140,7 +140,6 @@ export class CampanasComponent {
 
   createCampana(campana: campana | null) {    
     if (campana){
-      console.log("campaña antes de crear y antes de upper: "+campana)
       campana.nombre = campana.nombre.toUpperCase();
       this.serviceCam.crearCampana(campana).subscribe(
         response => {
