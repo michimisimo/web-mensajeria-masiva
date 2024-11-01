@@ -66,9 +66,11 @@ export class CampanasComponent {
     this.serviceCam.getCam().subscribe(
       (response: campana[]) => {
         response.forEach((campana) => {
-          this.mostrarCampana = campana
+          if(campana.id_estado != 4){
+            this.mostrarCampana = campana
           this.mostrarCampana.nombre_tipo_campana = this.getTipoCampanaNombre(this.mostrarCampana.id_tipo_campana);
           this.listCam.push(this.mostrarCampana);
+          }          
         });   
       },
        error => {
@@ -83,7 +85,7 @@ export class CampanasComponent {
     if (id === 1) {
       nombreTipoCampana = 'SMS';
     } else if (id === 2) {
-      nombreTipoCampana = 'Email';
+      nombreTipoCampana = 'EMAIL';
     } else{
       console.log("No se pudo obtener el nombre del tipo de campaña")
       return "-";
@@ -148,7 +150,7 @@ export class CampanasComponent {
           }
         );
       }
-    }    
+    }
   }
 
 
