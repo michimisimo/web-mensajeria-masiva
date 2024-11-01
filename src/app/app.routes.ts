@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DifusionComponent } from './components/lista-difusion/lista-difusion.component';
 import { DestinatariosComponent } from './components/destinatarios/destinatarios.component';
 import { CampanasComponent } from './components/campanas/campanas.component';
 import { EmailComponent } from './components/email/email.component';
@@ -13,7 +12,6 @@ export const routes: Routes = [
 
     { path: 'home', component: HomeComponent },
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'difusion', component: DifusionComponent },
     { path: 'destinatarios', component: DestinatariosComponent },
     { path: 'campanas', component: CampanasComponent },
     { path: 'email', component: EmailComponent },
