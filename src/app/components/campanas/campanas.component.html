@@ -26,6 +26,9 @@
                         <td>{{ campana.fecha_programada | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ campana.hora_programada}}</td>
                         <td>
+                            <button *ngIf="campana.id_campana" (click)="selDataDif(campana)">
+                                <i class="fas fa-eye"></i>
+                            </button>
                             <button (click)="openEditModal(campana)">
                                 <i class="fas fa-edit"></i>
                             </button>
@@ -41,6 +44,8 @@
             </table>
         </div>
     </div>
+
+    
 
 </div>
 
@@ -59,3 +64,13 @@
   (onSave)="editarCampana($event)" 
   (onClose)="closeEditModal()">
 </app-edit-campana>
+
+<!-- Modal para mostrar destinatarios campaña -->
+<app-show-list 
+  *ngIf="isDestinatariosModalOpen" 
+  [isModalOpen]="isDestinatariosModalOpen" 
+  [listDest]="listDest" 
+  [campanaSelected]="idCampanaSelected"
+  [nombreCampana]="nombreCampanaSelected"
+  (onClose)="closeDestinatariosModal()">
+</app-show-list>

@@ -1,22 +1,26 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { campana } from '../../interfaces/campana.interface';
+import { destinatario } from '../../interfaces/destinatario.interface';
 import { CommonModule } from '@angular/common';
 import { ServiceCamapanaService } from '../../services/service-campana/service-camapana.service';
 import { FormsModule } from '@angular/forms';
 import { EditCampanaComponent } from '../../modal/edit-campana/edit-campana.component';
 import { CreateCampanaComponent } from '../../modal/create-campana/create-campana.component';
+import { ServiceDifusionService } from '../../services/service-difusion/service-difusion.service';
+import { ShowListComponent } from '../../modal/show-list/show-list.component';
+
 
 
 @Component({
   selector: 'app-campanas',
   standalone: true,
-  imports: [CommonModule, FormsModule, EditCampanaComponent, CreateCampanaComponent],
+  imports: [CommonModule, FormsModule, EditCampanaComponent, CreateCampanaComponent, ShowListComponent],
   templateUrl: './campanas.component.html',
   styleUrl: './campanas.component.css'
 })
 export class CampanasComponent {
 
-  constructor(private serviceCam: ServiceCamapanaService) {}
+  constructor(private serviceCam: ServiceCamapanaService, private serviceDif : ServiceDifusionService) {}
 
   @ViewChild('popup') popup!: ElementRef;
   @ViewChild('cont') cont!: ElementRef;
@@ -48,7 +52,6 @@ export class CampanasComponent {
   };
 
   listCam: campana[] = [];
-  listCamProv: campana[] = [];
 
   //Modal crear campaña
   isCreateModalOpen = false;
@@ -74,6 +77,13 @@ export class CampanasComponent {
     id_tipo_campana: 0,
     id_estado: 0
   };
+
+  listDest: destinatario[] = [];
+
+  //Modal mostrar detalle campaña
+  isDestinatariosModalOpen: boolean = false;
+  idCampanaSelected: number = 0; 
+  nombreCampanaSelected: string = '';
 
   mostrarCam() {
     this.listCam = [];
@@ -124,11 +134,11 @@ export class CampanasComponent {
   }
 
   closeCreateModal() {
-    this.clearCampaña(this.newCampana);
+    this.clearCampana(this.newCampana);
     this.isCreateModalOpen = false;
   }
 
-  clearCampaña(campana : campana){
+  clearCampana(campana : campana){
     campana.id_campana =  0;
     campana.nombre = '';
     campana.fecha_creacion = new Date();
@@ -200,7 +210,33 @@ export class CampanasComponent {
         );
       }
     }
+  }  
+
+  // Modal mostrar detalle campaña  
+  async selDataDif(campana: campana) {
+    if (campana.id_campana){
+      this.idCampanaSelected = campana.id_campana;
+      this.nombreCampanaSelected = campana.nombre;
+    await this.getListDest(campana.id_campana);
+    this.isDestinatariosModalOpen = true; // Abre el modal
+    }    
   }
 
+  closeDestinatariosModal() {
+    this.clearCampana(this.selectedCampana);
+    this.isDestinatariosModalOpen = false; //Cierra el modal
+  }
+
+  getListDest(idCampana: number) { //Obtiene lista de destinatarios de la campaña
+    this.serviceDif.getDetalleDifusion(idCampana).subscribe({
+      next: (response) => {
+        this.listDest = response || [];
+        console.log('listDest', this.listDest);
+      },
+      error: (error) => {
+        console.log('error al obtener detalle de difusión', error);
+      }
+    });
+  }
 
 }
