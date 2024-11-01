@@ -117,7 +117,7 @@ export class DestinatariosComponent {
         console.error('Error:', error);
       }
     );
-    console.log('lista_BD:', this.listDest)
+    /* console.log('lista_BD:', this.listDest) */
   }
 
   isDestinatarioAntiguo(rut: string): boolean {
@@ -285,7 +285,7 @@ export class DestinatariosComponent {
     this.serviceCam.getCam().subscribe(
       (response: campana[]) => {
         this.listCam = response
-        console.log('Campañas cargadas:', this.listCam);
+        /* console.log('Campañas cargadas:', this.listCam); */
       },
       error => {
         console.error('Error al cargar campañas:', error);
