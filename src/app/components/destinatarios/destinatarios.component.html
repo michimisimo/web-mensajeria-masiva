@@ -24,7 +24,7 @@
 
     <div class="cont">
         <div class="nav_table">
-            <button *ngIf="selectedRuts.length > 0"
+            <button [disabled]="selectedRuts.length === 0"
                 (click)="openCrear()">Agregar a lista</button>
             <button class="upload" (click)="subirDestinatarios()">Guardar Cambios</button>            
         </div>
@@ -35,7 +35,6 @@
                         <th>
                             <input type="checkbox" (change)="toggleSelectAll($event)" [checked]="selectedRuts.length === listDestProv.length">
                         </th>
-                        <th></th>
                         <th>Rut</th>
                         <th>Nombre</th>
                         <th>Email</th>
@@ -89,7 +88,7 @@
         <h3 id="closeBtn" #closeBtn>X</h3>
     </div>
     <div class="cont" id="cont" #cont>
-        <h2>Selecciona la campaña:</h2>
+        <h2>Seleccione la campaña:</h2>
         <form>
             <label for="selectCampana">Campaña:</label>
             <select id="selectCampana" [(ngModel)]="selectedCampana" name="select" (change)="cambioCampana($event)">
