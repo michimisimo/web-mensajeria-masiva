@@ -38,10 +38,84 @@
                         </td> 
                     </tr>
                     <tr *ngIf="listCam.length === 0">
-                        <td colspan="6">No hay campañas disponibles</td>
+                        <td colspan="6">No hay campañas creadas</td>
                     </tr>
                 </tbody>
-            </table>
+            </table>            
+        </div>
+        <br>
+        <br>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo campaña</th>
+                        <th>Fecha creación</th>
+                        <th>Fecha programada</th>
+                        <th>Hora programada</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let campana of listCamInProgress; let i = index">
+                        <td>{{ campana.nombre | titlecase}}</td>
+                        <td>  {{ campana.id_tipo_campana === 1 ? 'SMS' : ((campana.id_tipo_campana === 2 ? 'Email' : '-')) | titlecase }}</td>
+                        <td>{{ campana.fecha_creacion | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{ campana.fecha_programada | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{ campana.hora_programada}}</td>
+                        <td>
+                            En proceso
+                            <span class="icono-proceso">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="listCamInProgress.length === 0">
+                        <td colspan="6">No hay campañas en proceso</td>
+                    </tr>
+                </tbody>
+            </table>            
+        </div>
+        <br>
+        <br>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo campaña</th>
+                        <th>Fecha creación</th>
+                        <th>Fecha programada</th>
+                        <th>Hora programada</th>
+                        <th></th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let campana of listCamTerminada; let i = index">
+                        <td>{{ campana.nombre | titlecase}}</td>
+                        <td>  {{ campana.id_tipo_campana === 1 ? 'SMS' : ((campana.id_tipo_campana === 2 ? 'Email' : '-')) | titlecase }}</td>
+                        <td>{{ campana.fecha_creacion | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{ campana.fecha_programada | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{ campana.hora_programada}}</td>
+                        <td>
+                            <button>
+                                <i id="icono-file" class="fas fa-file-alt"></i>
+                            </button>
+                        </td>
+                        <td>
+                            Terminada 
+                            <span class="icono-check">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </td>                        
+                    </tr>
+                    <tr *ngIf="listCamTerminada.length === 0">
+                        <td colspan="6">No hay campañas terminadas</td>
+                    </tr>
+                </tbody>
+            </table>            
         </div>
     </div>
 

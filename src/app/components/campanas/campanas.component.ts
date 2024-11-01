@@ -30,15 +30,6 @@ export class CampanasComponent {
   ngOnInit(): void {
     this.mostrarCam(); // Llamar al método para cargar los datos al iniciar
   }
-  mostrarCampana: campana = {
-    id_campana: 0,
-    nombre: '',
-    fecha_creacion: new Date(),
-    fecha_programada: new Date(),
-    hora_programada: new Date(),
-    id_tipo_campana: 0,
-    id_estado: 0
-  };
 
   newCampana: campana = {
     nombre: '',
@@ -49,7 +40,10 @@ export class CampanasComponent {
     id_estado: 3
   };
 
+
   listCam: campana[] = [];
+  listCamInProgress : campana[] = [];
+  listCamTerminada: campana[] = [];
 
   //Modal crear campaña
   isCreateModalOpen = false;
@@ -89,8 +83,13 @@ export class CampanasComponent {
       (response: campana[]) => {
         response.forEach((campana) => {
           if(campana.id_estado != 4){
-            this.mostrarCampana = campana
-          this.listCam.push(this.mostrarCampana);
+            if(campana.id_estado == 3){
+              this.listCam.push(campana);
+            }else if (campana.id_estado == 2){
+              this.listCamInProgress.push(campana);
+            }else if(campana.id_estado == 1){
+              this.listCamTerminada.push(campana);
+            }
           }          
         });   
       },

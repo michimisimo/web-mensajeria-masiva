@@ -131,3 +131,25 @@ tbody tr:hover {
 tbody tr:hover td button i {
     color: black; 
 }
+
+.icono-check{
+    display: inline-block;
+    background-color: green;
+    color: white;
+    border-radius: 3px;
+    padding: 4px;
+    margin-left: 8px;
+}
+
+.icono-proceso{
+    display: inline-block;
+    background-color:blue;
+    color: white;
+    border-radius: 3px;
+    padding: 4px;
+    margin-left: 8px;
+}
+
+#icono-file{
+    font-size: 25px; 
+}
