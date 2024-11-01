@@ -33,6 +33,11 @@ export class ShowListComponent {
     ).join(' ');
   }
 
+  toLower(text: string): string{
+    if (!text) return '';
+    return text.toLowerCase();
+  }
+
 
   formatRut(rut: string): string {
     if (!rut) return '';

@@ -29,7 +29,7 @@
                               {{ capitalize(destinatario.appaterno) }}
                               {{ capitalize(destinatario.apmaterno) }}
                             </td>
-                            <td class="email-container">{{ destinatario.email }}</td>
+                            <td class="email-container">{{ toLower(destinatario.email) }}</td>
                             <td>{{ destinatario.telefono }}</td>
                             <td>
                               <button (click)="eliminarDestinatario(destinatario)">
