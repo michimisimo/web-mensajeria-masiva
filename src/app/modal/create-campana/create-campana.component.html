@@ -4,31 +4,55 @@
       <h2>Crear Campaña</h2>
     </div>
     <form (ngSubmit)="save()">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <input id="nombre" [(ngModel)]="campana.nombre" name="nombre" required />
+      <div class="flex-container">
+        <div class="section">
+          <h3>Datos de la Campaña</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input id="nombre" [(ngModel)]="campana.nombre" name="nombre" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tipo">Tipo de Campaña:</label>
+              <select id="tipo" [(ngModel)]="campana.id_tipo_campana" name="tipo" required>
+                <option [ngValue]="1">SMS</option>
+                <option [ngValue]="2">Email</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fecha">Fecha Programada:</label>
+              <input id="fecha" [(ngModel)]="campana.fecha_programada" name="fecha" required type="date" [min]="currentDate" />
+            </div>
+            <div class="form-group">
+              <label for="hora">Hora Programada:</label>
+              <select id="hora" [(ngModel)]="campana.hora_programada" name="hora" required>
+                <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="tipo">Tipo de Campaña:</label>
-          <select id="tipo" [(ngModel)]="campana.id_tipo_campana" name="tipo" type="number" required>
-            <option [ngValue]="1">SMS</option>
-            <option [ngValue]="2">Email</option>
-          </select>
+
+        <div class="section">
+          <h3>Información para destinatarios</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="asunto">Título:</label>
+              <input id="asunto" [(ngModel)]="email.asunto" name="asunto" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="mensaje">Mensaje:</label>
+              <textarea id="mensaje" [(ngModel)]="email.contenido" name="mensaje" required></textarea>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fecha">Fecha Programada:</label>
-          <input id="fecha" [(ngModel)]="campana.fecha_programada" name="fecha" required type="date" [min]="currentDate" />
-        </div>
-        <div class="form-group">
-          <label for="hora">Hora Programada:</label>
-          <select id="hora" [(ngModel)]="campana.hora_programada" name="hora" required>
-            <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
-          </select>
-        </div>
-      </div>
+
       <div class="button-row">
         <button type="submit">Crear</button>
         <button type="button" (click)="onClose.emit()">Cancelar</button>
@@ -36,6 +60,10 @@
     </form>
   </div>
 </div>
+
+
+
+
 
 
 

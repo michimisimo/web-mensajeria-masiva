@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { campana } from '../../interfaces/campana.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { email } from '../../interfaces/email.interface';
 
 @Component({
   selector: 'app-create-campana',
@@ -13,11 +14,16 @@ import { FormsModule } from '@angular/forms';
 export class CreateCampanaComponent {
 
   @Input() campana!: campana;
-  @Output() onCreate = new EventEmitter<campana>();
+  @Output() onCreate = new EventEmitter<{ campana: campana, email: email }>();
   @Output() onClose = new EventEmitter<void>();
 
   currentDate: string;
   availableHours: string[] = [];
+
+  email: email = {
+    asunto: '',
+    contenido: ''
+};
 
   constructor() {
     const today = new Date();
@@ -26,7 +32,12 @@ export class CreateCampanaComponent {
   }
 
   save() {    
-    this.onCreate.emit(this.campana); // Emitir los datos de la nueva campaña
+    const combinedData = {
+      campana: this.campana,
+      email: this.email
+    };
+
+    this.onCreate.emit(combinedData);
   }
   
   generateAvailableHours() {

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { campana } from '../../interfaces/campana.interface';
+import { email } from '../../interfaces/email.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,9 @@ export class ServiceCamapanaService {
     return this.http.post(`${this.apiUrl}createCampana`, campana);
   }
 
-  
+  crearEmailCampana(email: email): Observable<any> {
+    return this.http.post(`${this.apiUrl}createEmailCampana`, email);
+  }
 
 }
 
