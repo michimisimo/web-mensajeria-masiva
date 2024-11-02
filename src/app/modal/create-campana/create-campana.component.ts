@@ -16,8 +16,15 @@ export class CreateCampanaComponent {
   @Output() onCreate = new EventEmitter<campana>();
   @Output() onClose = new EventEmitter<void>();
 
+  currentDate: string = '';
+
+  constructor() {
+    const today = new Date();
+    this.currentDate = today.toISOString().split('T')[0]; // Obtiene la fecha en formato YYYY-MM-DD
+  }
+
   save() {    
     this.onCreate.emit(this.campana); // Emite los datos de la nueva campaña
-  }
+  }  
 
 }
