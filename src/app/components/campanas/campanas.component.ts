@@ -125,7 +125,6 @@ export class CampanasComponent {
   }
 
   closeCreateModal() {
-    this.clearCampana(this.newCampana);
     this.isCreateModalOpen = false;
   }
 
@@ -134,11 +133,18 @@ export class CampanasComponent {
     campana.nombre = '';
     campana.fecha_creacion = new Date();
     campana.fecha_programada = new Date();
+    campana.hora_programada = new Date(),
     campana.id_tipo_campana = 0;
     campana.id_estado = 0;
   }
 
+  clearEmail(email: email){
+    email.asunto = '';
+    email.contenido = '';
+  }
+
   createCampana(data: { campana: campana; email: email } | null) {
+    this.isCreateModalOpen = false;
     if (data && data.campana) {
       // Convertir el nombre de la campaña a mayúsculas
       data.campana.nombre = data.campana.nombre.toUpperCase();
@@ -147,48 +153,39 @@ export class CampanasComponent {
       this.serviceCam.crearCampana(data.campana).subscribe(
         (response) => {
           console.log('Campaña creada con éxito:', response);
-
-          //Obtener el Id de la campaña recién creada
-          this.serviceCam.getCam().subscribe(
-            (response: campana[]) => {
-              if (response.length > 0) {
-                const idTipoCamp = response[0].id_tipo_campana; // Obtener la última campaña
-                console.log("ID tipo campaña recién creada: "+idTipoCamp)
+          //Llenar list con campañas de bd
+          this.serviceCam.getCam().subscribe((response: campana[]) => {
+            const list = response;
+            //Obtener el id de campaña más alto de list
+            const maxIdCampana = Math.max(...list.map(campana => campana.id_campana).filter((id): id is number => id !== undefined) )
+            list.forEach(campana => {
+              if (campana.id_campana === maxIdCampana) {   
 
                 //Si el tipo de campaña es Email, se crea el mensaje del email en la tabla Email
-                if (idTipoCamp===2){
-                  // Asignar el ID de campaña al objeto email
-                  console.log("La campaña es Email con la siguiente ID tipo camp: "+idTipoCamp)
-                  data.email.correo_remitente = "send@massive.com"
-                  data.email.id_campana = 2;
-
-                  console.log("Objeto Email antes de ser enviado para ser creaedo: "+data.email)
+                if (campana.id_tipo_campana===2){
+                  console.log("El tipo de campaña es de Email")                  
+                  data.email.id_campana = campana.id_campana;
 
                   // Crear el email (mensaje) en la base de datos con todos sus atributos, excepto "email.destinatario"
                   this.serviceCam.crearEmailCampana(data.email).subscribe(
                     (emailResponse) => {
                       console.log('Email creado con éxito:', emailResponse);
-                      this.mostrarCam(); // Actualiza la lista de campañas
+                      
                     },
                     (error) => {
                       console.error('Error al crear email:', error);
                     }
                   );
-                } else {
-                  this.mostrarCam();
-                }        
-              } else {
-                console.log('No hay campañas disponibles.');
+                //Si el tipo de campaña es SMS, se crea el mensaje del SMS en la tabla SMS
+                } else if (campana.id_tipo_campana === 1){
+                  console.log("El tipo de campaña es de SMS")
+                } 
+                this.mostrarCam(); // Actualiza la lista de campañas
+                this.clearCampana(data.campana); //Limpia campos de campaña en el formulario
+                this.clearEmail(data.email); //Limpia campos de email en el formulario 
               }
-            },
-            (error) => {
-              console.error('Error al obtener campañas:', error);
-            }
-          );
-
-            
-
-          this.isCreateModalOpen = false;
+            });
+          });          
         },
         (error) => {
           console.error('Error al crear campaña:', error);

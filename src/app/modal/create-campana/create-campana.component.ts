@@ -22,7 +22,8 @@ export class CreateCampanaComponent {
 
   email: email = {
     asunto: '',
-    contenido: ''
+    contenido: '',
+    correo_remitente: "send@massive.com"
 };
 
   constructor() {
@@ -31,13 +32,13 @@ export class CreateCampanaComponent {
     this.generateAvailableHours();//Obtener horas en el rango disponible
   }
 
-  save() {    
+  save() {      
     const combinedData = {
       campana: this.campana,
       email: this.email
     };
 
-    this.onCreate.emit(combinedData);
+    this.onCreate.emit(combinedData); 
   }
   
   generateAvailableHours() {
