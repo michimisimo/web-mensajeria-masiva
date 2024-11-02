@@ -21,11 +21,18 @@
 
 }
 
+.cont h3{
+    font-family: poppins-regular;
+    margin-top: 0;
+}
+
 .cont .nav_table {
     margin-left: auto;
     height: 40px;
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    padding-top: 50px;
 }
 
 .nav_table button {
@@ -132,18 +139,8 @@ tbody tr:hover td button i {
     color: black; 
 }
 
-.icono-check{
+.icono-estado{
     display: inline-block;
-    background-color: green;
-    color: white;
-    border-radius: 3px;
-    padding: 4px;
-    margin-left: 8px;
-}
-
-.icono-proceso{
-    display: inline-block;
-    background-color:blue;
     color: white;
     border-radius: 3px;
     padding: 4px;
