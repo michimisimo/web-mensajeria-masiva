@@ -24,7 +24,9 @@
         </div>
         <div class="form-group">
           <label for="hora">Hora Programada:</label>
-          <input id="hora" [(ngModel)]="campana.hora_programada" name="hora" required type="time" />
+          <select id="hora" [(ngModel)]="campana.hora_programada" name="hora" required>
+            <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
+          </select>
         </div>
       </div>
       <div class="button-row">
@@ -34,5 +36,7 @@
     </form>
   </div>
 </div>
+
+
 
   
