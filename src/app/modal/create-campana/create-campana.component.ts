@@ -24,12 +24,21 @@ export class CreateCampanaComponent {
     asunto: '',
     contenido: '',
     correo_remitente: "send@massive.com"
-};
+  };
+
+  minDate: string = '';
 
   constructor() {
     const today = new Date();
     this.currentDate = today.toISOString().split('T')[0]; // Obtener la fecha en formato YYYY-MM-DD
     this.generateAvailableHours();//Obtener horas en el rango disponible
+  }  
+
+  ngOnInit(): void {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    this.minDate = tomorrow.toISOString().split('T')[0]; // Obtiene 'YYYY-MM-DD' para mañana
   }
 
   save() {      
