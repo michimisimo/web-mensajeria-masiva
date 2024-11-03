@@ -166,7 +166,7 @@ export class CampanasComponent {
                   console.log("El tipo de campaña es de Email")                  
                   data.email.id_campana = campana.id_campana;
 
-                  // Crear el email (mensaje) en la base de datos con todos sus atributos, excepto "email.destinatario"
+                  // Crear el email (mensaje) en la base de datos con todos sus atributos
                   this.serviceCam.crearEmailCampana(data.email).subscribe(
                     (emailResponse) => {
                       console.log('Email creado con éxito:', emailResponse);
