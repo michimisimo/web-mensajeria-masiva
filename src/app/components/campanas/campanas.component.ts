@@ -87,6 +87,9 @@ export class CampanasComponent {
 
   mostrarCam() {
     this.listCam = [];
+    this.listCamInProgress = [];
+    this.listCamTerminada = [];
+    
     this.serviceCam.getCam().subscribe(
       (response: campana[]) => {
         response.forEach((campana) => {
