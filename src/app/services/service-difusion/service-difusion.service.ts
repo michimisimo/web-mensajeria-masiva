@@ -15,6 +15,10 @@ export class ServiceDifusionService {
   }
 
   getDetalleDifusion(idCampana: number): Observable<any> {
+    return this.http.get(this.apiUrl + 'getDestDif/' + idCampana)
+  }
+
+  getDestinatariosCampana(idCampana: number) : Observable<any>{
     return this.http.get(this.apiUrl + 'getDetDif/' + idCampana)
   }
 
