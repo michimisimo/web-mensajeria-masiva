@@ -9,6 +9,7 @@ import { CreateCampanaComponent } from '../../modal/create-campana/create-campan
 import { ServiceDifusionService } from '../../services/service-difusion/service-difusion.service';
 import { ShowListComponent } from '../../modal/show-list/show-list.component';
 import { email } from '../../interfaces/email.interface';
+import { Router } from '@angular/router';
 
 
 
@@ -28,7 +29,8 @@ import { email } from '../../interfaces/email.interface';
 export class CampanasComponent {
   constructor(
     private serviceCam: ServiceCamapanaService,
-    private serviceDif: ServiceDifusionService
+    private serviceDif: ServiceDifusionService,
+    private router : Router
   ) {}
 
   @ViewChild('popup') popup!: ElementRef;
@@ -274,4 +276,9 @@ export class CampanasComponent {
       },
     });
   }
+
+  irReporte(campana: any) {
+    this.router.navigate(['/reportes'], { queryParams: { campanaId: campana.id_campana } });
+  }
+
 }

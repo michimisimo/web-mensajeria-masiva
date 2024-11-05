@@ -8,6 +8,7 @@ export interface difusion {
 }
 
 export interface detalleDifusion {
+    id_difusion?: number;
     rut: string;
     id_campana: number;
 }

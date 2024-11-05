@@ -14,4 +14,8 @@ export class ServiceEnvioService {
   borrarEnv(idDifusion: number): Observable<any> {
     return this.http.put(this.apiUrl + 'delEnv/' + idDifusion, {})
   }
+
+  getEnv(idCampana: number): Observable<any> {
+    return this.http.get(this.apiUrl + 'getEnvDif/'+idCampana)
+  }
 }

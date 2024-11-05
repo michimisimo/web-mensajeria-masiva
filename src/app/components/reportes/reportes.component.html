@@ -1,1 +1,42 @@
-<p>reportes works!</p>
+<div class="page">
+    <!-- Espacio vacío encima de la tabla -->
+    <div class="top-elements">
+        <h3>Reporte {{campana.nombre | titlecase }}</h3>
+        <br>
+        <p> Tipo de campaña: {{ campana.id_tipo_campana === 1 ? 'SMS' : ((campana.id_tipo_campana === 2 ? 'Email' : '-')) | titlecase }}</p>
+        <p>Fecha de creación: {{campana.fecha_creacion | date: 'dd/MM/yyyy'}}</p>
+        <p>Fecha de programación: {{campana.fecha_programada | date: 'dd/MM/yyyy'}}</p>
+        <p>Fecha de programación: {{campanaHora }}</p>
+    </div>
+
+    <div class="cont">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rut</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Acciones</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let destinatario of listDest">
+                        <td>{{formatRut(destinatario.rut) }}-{{ destinatario.dvrut | titlecase}}</td>
+                        <td>
+                            {{ destinatario.nombre | titlecase }}
+                            {{ destinatario.snombre | titlecase}}
+                            {{ destinatario.appaterno | titlecase}}
+                            {{ destinatario.apmaterno | titlecase }}
+                        </td>
+                    </tr>                    
+                    <tr>
+                        <td colspan="5" class="no-data-row">No hay destinatarios disponibles.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
