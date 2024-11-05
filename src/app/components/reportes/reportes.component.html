@@ -2,6 +2,15 @@
 <div class="page">
     <div class="top-elements">
         <h3 class="report-title">Reporte {{reporte.nombre_campana | titlecase }}</h3>
+        <br>        
+        <div class="email-info">
+            <h4 class="email-title">Mensaje de la campaña</h4>
+            <div class="email-details">
+                <p><strong>De:</strong> {{ reporte.remitente }}</p>
+                <p><strong>Asunto:</strong> {{ reporte.asunto }}</p>
+                <p class="email-content">{{ reporte.contenido }}</p>
+            </div>
+        </div>        
         <div class="info-container">
             <div class="info-item">
                 <span class="info-label">Tipo de campaña: </span>
@@ -29,7 +38,7 @@
             </div>
         </div>
     </div>
-    
+    <br>
     <div class="cont">
         <div class="table-container">
             <table>

@@ -43,7 +43,7 @@
 
 .info-value {
     color: #333;
-    font-family: poppins-regular;
+    font-family: poppins-semibold;
     font-size: 14px;
 }
 
@@ -151,3 +151,40 @@ tbody tr:hover td button i {
     width: 2px;
     background-color: white;
 }
+
+.email-info {
+    max-width: 500px; /* Limita el ancho del mensaje */
+    padding: 15px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #b3b3b3;
+}
+
+.email-title {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    font-family: poppins-bold;
+}
+
+.email-details p {
+    margin: 5px 0;
+    font-family: poppins-semibold;
+    font-size: 14px;
+    color: #0c0c0c;
+}
+.email-details p strong {
+    margin: 5px 0;
+    font-family: poppins-bold;
+    font-size: 14px;
+    color: #0c0c0c;
+    text-decoration: underline;
+}
+
+.email-content {
+    margin-top: 10px;
+    color: #555;
+}
+

@@ -31,6 +31,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Poppins-Semibold';
+    src: url('/assets/fonts/Poppins-SemiBold.ttf') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /* Estructura principal con Navbar, Sidebar, Contenido y Footer */
 :host {
