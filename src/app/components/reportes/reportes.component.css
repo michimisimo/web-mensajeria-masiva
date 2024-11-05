@@ -9,38 +9,42 @@
 .top-elements {
     width: 100%;
     max-width: 1200px;
-    height: 400px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 0 10px;
 }
 
-.top-elements h3 {
+.report-title {
     font-family: poppins-light;
     margin-top: 0;
     color: #f1e64e;
-    font-size: 24px;
+    font-size: 20px;
 }
 
-.data-table {
-    width: auto;
-    border-collapse: collapse;
-    border: 1px solid white;
-    margin-top: 20px;
+.info-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
-.data-table td {
-    padding: 10px;
-    color: white;
-    font-family: poppins-light;
-    font-size: 18px;
+.info-item {
+    flex: 1 1 45%;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #b3b3b3;
+    border-radius: 5px;
+    background-color: #b3b3b3;
 }
 
-.title-column {
-    text-align: right;
+.info-label {
+    font-family: poppins-bold;
+    font-size: 14px;
+    color: #333;
 }
 
-.value-column {
-    text-align: left;
+.info-value {
+    color: #333;
+    font-family: poppins-regular;
+    font-size: 14px;
 }
 
 .cont {
@@ -144,6 +148,6 @@ tbody tr:hover td button i {
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 2px; /* Ancho de la línea vertical */
-    background-color: white; /* Color de la línea vertical */
+    width: 2px;
+    background-color: white;
 }
