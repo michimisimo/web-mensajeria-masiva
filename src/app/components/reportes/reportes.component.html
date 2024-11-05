@@ -1,14 +1,31 @@
 <div class="page">
-    <!-- Espacio vacío encima de la tabla -->
     <div class="top-elements">
-        <h3>Reporte {{campana.nombre | titlecase }}</h3>
+        <h3>Reporte {{reporte.nombre_campana | titlecase }}</h3>
         <br>
-        <p> Tipo de campaña: {{ campana.id_tipo_campana === 1 ? 'SMS' : ((campana.id_tipo_campana === 2 ? 'Email' : '-')) | titlecase }}</p>
-        <p>Fecha de creación: {{campana.fecha_creacion | date: 'dd/MM/yyyy'}}</p>
-        <p>Fecha de programación: {{campana.fecha_programada | date: 'dd/MM/yyyy'}}</p>
-        <p>Fecha de programación: {{campanaHora }}</p>
+        <table class="data-table">
+            <tbody>
+                <tr>
+                    <td class="title-column">Tipo de campaña</td>
+                    <td class="value-column">{{ tipoCampana === 1 ? 'SMS' : ((tipoCampana === 2 ? 'Email' : '-')) | titlecase }}</td>
+                    <td class="title-column">Hora de programación</td>
+                    <td class="value-column">{{ reporte.hora_programada }}</td>
+                </tr>
+                <tr>
+                    <td class="title-column">Fecha de envío</td>
+                    <td class="value-column">{{reporte.fecha_envio | date: 'dd/MM/yyyy'}}</td>
+                    <td class="title-column">Cantidad de Enviados</td>
+                    <td class="value-column">{{reporte.correos_enviados}}</td>
+                </tr>
+                <tr>
+                    <td class="title-column">Fecha de programación</td>
+                    <td class="value-column">{{reporte.fecha_programada | date: 'dd/MM/yyyy'}}</td>
+                    <td class="title-column">Cantidad de Fallidos</td>
+                    <td class="value-column">{{reporte.correos_fallidos}}</td>
+                </tr>
+            </tbody>            
+        </table>
     </div>
-
+    
     <div class="cont">
         <div class="table-container">
             <table>
@@ -17,12 +34,11 @@
                         <th>Rut</th>
                         <th>Nombre</th>
                         <th>Email</th>
-                        <th>Acciones</th>
                         <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let destinatario of listDest">
+                    <tr *ngFor="let destinatario of listaDest">
                         <td>{{formatRut(destinatario.rut) }}-{{ destinatario.dvrut | titlecase}}</td>
                         <td>
                             {{ destinatario.nombre | titlecase }}
@@ -30,13 +46,21 @@
                             {{ destinatario.appaterno | titlecase}}
                             {{ destinatario.apmaterno | titlecase }}
                         </td>
+                        <td class="email-container">{{ destinatario.email }}</td>
+                        <td>
+                            <ng-container *ngIf="getEnvioDestinatario(destinatario.rut) as envio">
+                                {{ envio.id_estado === 2 ? 'Enviado' : (envio.id_estado === 3 ? 'Fallido' : '-') }}
+                            </ng-container>
+                            <ng-container *ngIf="!getEnvioDestinatario(destinatario.rut)">                                
+                                -
+                            </ng-container>
+                        </td>
                     </tr>                    
-                    <tr>
-                        <td colspan="5" class="no-data-row">No hay destinatarios disponibles.</td>
+                    <tr *ngIf="!listaDest.length">
+                        <td colspan="4" class="no-data-row">No hay destinatarios disponibles.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
