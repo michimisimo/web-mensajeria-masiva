@@ -25,16 +25,4 @@ export class SidebarComponent {
     this.router.navigate(['/campanas']);  // Navega a la página de campañas
   }
 
-  irEmail() {
-    this.router.navigate(['/email']);  // Navega a la página de envíos de correos
-  }
-
-  irSMS() {
-    this.router.navigate(['/sms']);  // Navega a la página de envíos de SMS
-  }
-
-  irReportes() {
-    this.router.navigate(['/reportes']);  // Navega a la página de reportes de campañas
-  }
-
 }
