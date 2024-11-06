@@ -1,0 +1,8 @@
+services:
+  web-mensajeria-masiva:
+    image: nginx
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./dist/proyecto_arq/browser:/usr/share/nginx/html:ro

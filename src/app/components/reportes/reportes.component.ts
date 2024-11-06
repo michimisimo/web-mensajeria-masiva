@@ -10,6 +10,7 @@ import { detalleDifusion, difusion } from '../../interfaces/difusion.interface';
 import { envio } from '../../interfaces/envio';
 import { destinatario } from '../../interfaces/destinatario.interface';
 import { ServiceDestinatarioService } from '../../services/service-destinatario/service-destinatario';
+import { ServiceReportesService } from '../../services/service-reportes/service-reportes.service';
 
 @Component({
   selector: 'app-reportes',
@@ -39,11 +40,11 @@ export class ReportesComponent {
     errores: []
   };
 
-  campanas:campana[] = [];
+  campanas: campana[] = [];
   tipoCampana: number = 0;
 
-  listaDif : detalleDifusion[] = [];
-  listaEnv : envio[] = [];
+  listaDif: detalleDifusion[] = [];
+  listaEnv: envio[] = [];
   listaDest: destinatario[] = [];
 
   constructor(
@@ -51,7 +52,8 @@ export class ReportesComponent {
     private serviceEnv: ServiceEnvioService,
     private serviceCam: ServiceCamapanaService,
     private serviceDif: ServiceDifusionService,
-    private serviceDest:ServiceDestinatarioService
+    private serviceDest: ServiceDestinatarioService,
+    private serviceRep: ServiceReportesService
   ) {
     this.route.queryParams.subscribe(params => {
       const campanaId = params['campanaId'];
@@ -72,95 +74,95 @@ export class ReportesComponent {
     return formattedRut;
   }
 
-  obtenerReporteCampana(){
-    this.serviceEnv.getReporte(this.campanaId).subscribe(reporteData => {
+  obtenerReporteCampana() {
+    this.serviceRep.getReporte(this.campanaId).subscribe(reporteData => {
       if (reporteData.length > 0) {
-          const data = reporteData[0];
+        const data = reporteData[0];
 
-          this.reporte.id = data.id;
-          this.reporte.id_campana = data.id_campana;
-          this.reporte.nombre_campana = data.nombre_campana;
-          this.reporte.fecha_programada = data.fecha_programada;
-          this.reporte.hora_programada = data.hora_programada;
-          this.reporte.fecha_envio = data.fecha_envio;
-          this.reporte.destinatarios_totales = data.destinatarios_totales;
-          this.reporte.correos_enviados = data.correos_enviados;
-          this.reporte.correos_fallidos = data.correos_fallidos;
-          this.reporte.contenido = data.contenido;
-          this.reporte.asunto = data.asunto;
-          this.reporte.remitente = data.remitente;
-          this.reporte.lista_destinatarios = JSON.parse(data.lista_destinatarios);
-          this.reporte.errores = JSON.parse(data.errores);
+        this.reporte.id = data.id;
+        this.reporte.id_campana = data.id_campana;
+        this.reporte.nombre_campana = data.nombre_campana;
+        this.reporte.fecha_programada = data.fecha_programada;
+        this.reporte.hora_programada = data.hora_programada;
+        this.reporte.fecha_envio = data.fecha_envio;
+        this.reporte.destinatarios_totales = data.destinatarios_totales;
+        this.reporte.correos_enviados = data.correos_enviados;
+        this.reporte.correos_fallidos = data.correos_fallidos;
+        this.reporte.contenido = data.contenido;
+        this.reporte.asunto = data.asunto;
+        this.reporte.remitente = data.remitente;
+        this.reporte.lista_destinatarios = JSON.parse(data.lista_destinatarios);
+        this.reporte.errores = JSON.parse(data.errores);
       }
     }, error => {
-        console.error('Error al obtener el reporte:', error);
-    });    
+      console.error('Error al obtener el reporte:', error);
+    });
   }
 
   obtenerDestinatarios() {
     this.serviceDest.getDest().subscribe(response => {
-        console.log('Destinatarios response:', response); // Verifica la respuesta aquí
-        if (Array.isArray(response)) {
-            response.forEach(destinatario => {
-                // Verifica si el email del destinatario está en la lista de destinatarios del reporte
-                if (this.reporte.lista_destinatarios.includes(destinatario.email)) {
-                    this.listaDest.push(destinatario);                 
-                }
-            });
-        } else {
-            console.error('La respuesta no es un arreglo:', response);
-        }
+      console.log('Destinatarios response:', response); // Verifica la respuesta aquí
+      if (Array.isArray(response)) {
+        response.forEach(destinatario => {
+          // Verifica si el email del destinatario está en la lista de destinatarios del reporte
+          if (this.reporte.lista_destinatarios.includes(destinatario.email)) {
+            this.listaDest.push(destinatario);
+          }
+        });
+      } else {
+        console.error('La respuesta no es un arreglo:', response);
+      }
     }, error => {
-        console.error('Error al obtener las campañas:', error);
+      console.error('Error al obtener las campañas:', error);
     });
   }
 
-  obtenerTipoCampana(){
+  obtenerTipoCampana() {
     this.serviceCam.getCam().subscribe(response => {
       if (Array.isArray(response)) {
-          response.forEach(campana => {
-              if (campana.id_campana === this.campanaId) {
-                this.tipoCampana = campana.id_tipo_campana;                 
-              }
-          });
+        response.forEach(campana => {
+          if (campana.id_campana === this.campanaId) {
+            this.tipoCampana = campana.id_tipo_campana;
+          }
+        });
       } else {
-          console.error('La respuesta no es un arreglo:', response);
+        console.error('La respuesta no es un arreglo:', response);
       }
     }, error => {
-        console.error('Error al obtener las campañas:', error);
+      console.error('Error al obtener las campañas:', error);
     });
   }
 
-  obtenerDifusionesCampana(){
+  obtenerDifusionesCampana() {
     this.serviceDif.getDetalleDifusion(this.campanaId).subscribe(response => {
       if (Array.isArray(response)) {
-          response.forEach(difusion => {
-              if (difusion.id_campana === this.campanaId) {
-                this.obtenerEnvioCampana(difusion.id_difusion);    
-                this.listaDif.push(difusion);                           
-              }
-          });
+        response.forEach(difusion => {
+          if (difusion.id_campana === this.campanaId) {
+            this.obtenerEnvioCampana(difusion.id_difusion);
+            this.listaDif.push(difusion);
+          }
+        });
       } else {
-          console.error('La respuesta no es un arreglo:', response);
+        console.error('La respuesta no es un arreglo:', response);
       }
     }, error => {
-        console.error('Error al obtener las campañas:', error);
+      console.error('Error al obtener las campañas:', error);
     });
   }
 
-  obtenerEnvioCampana(id_difusion: number){
+  obtenerEnvioCampana(id_difusion: number) {
     this.serviceEnv.getEnv(this.campanaId).subscribe(response => {
       if (Array.isArray(response)) {
-          response.forEach((envio:any) => {
-              if (envio[0].id_difusion === id_difusion) {
-                this.listaEnv.push(envio[0]);                
-              }
-          });
+        response.forEach((envio: any) => {
+          if (envio[0].id_difusion === id_difusion) {
+            this.listaEnv.push(envio[0]);
+          }
+        });
       } else {
-          console.error('La respuesta no es un arreglo:', response);
+        console.error('La respuesta no es un arreglo:', response);
       }
     }, error => {
-        console.error('Error al obtener las campañas:', error);
+      console.error('Error al obtener las campañas:', error);
     });
   }
 
@@ -169,14 +171,14 @@ export class ReportesComponent {
     const difusion = this.listaDif.find(d => d.rut === rut);
 
     if (difusion) {
-        // Obtener el envio correspondiente a la difusion
-        const envio = this.listaEnv.find(e => e.id_difusion === difusion.id_difusion);
-        return envio; // Retorna el objeto de envio o undefined si no se encuentra
+      // Obtener el envio correspondiente a la difusion
+      const envio = this.listaEnv.find(e => e.id_difusion === difusion.id_difusion);
+      return envio; // Retorna el objeto de envio o undefined si no se encuentra
     }
 
     return null; // Retorna null si no se encontró la difusion
-}
+  }
 
-  
+
 
 }

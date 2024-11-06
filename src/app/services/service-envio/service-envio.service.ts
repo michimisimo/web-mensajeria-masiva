@@ -16,11 +16,7 @@ export class ServiceEnvioService {
   }
 
   getEnv(idCampana: number): Observable<any> {
-    return this.http.get(this.apiUrl + 'getEnvDif/'+idCampana)
-  }
-
-  getReporte(idCampana: number): Observable<any> {
-    return this.http.get(this.apiUrl + 'getReporteEnv/' + idCampana);
+    return this.http.get(this.apiUrl + 'getEnvDif/' + idCampana)
   }
 
 }
